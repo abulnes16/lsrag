@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+flashrag
+lightrag
+nanovectordb
+networkx
+httpx
+requests

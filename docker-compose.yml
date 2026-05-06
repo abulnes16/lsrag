@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - frontend-backend
+    depends_on:
+      - backend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - frontend-backend
+      - backend-internal
+    depends_on:
+      - ollama
+      - data-provider
+    volumes:
+      - rag_data:/app/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - DATA_PATH=/app/data
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    networks:
+      - backend-internal
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    # Exponemos internamente, no hacia el host. FastAPI accede via http://ollama:11434
+
+  data-provider:
+    build:
+      context: ./data-provider
+      dockerfile: Dockerfile
+    networks:
+      - backend-internal
+    volumes:
+      - rag_data:/app/data
+    depends_on:
+      - ollama
+    restart: "no"
+    # Este contenedor descargará los datos y el modelo, y luego finalizará.
+
+networks:
+  frontend-backend:
+    driver: bridge
+  backend-internal:
+    driver: bridge
+    internal: true # Red privada para backend, ollama y data-provider
+
+volumes:
+  rag_data:
+  ollama_data:

@@ -1,0 +1,67 @@
+# Sistema Operativo
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editores de código e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Variables de entorno y secretos
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# Python / FastAPI
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Entornos Virtuales
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Docker
+docker-compose.override.yml
+
+# Datos (en caso de pruebas locales con volúmenes bind)
+data/
+backend/data/
+data-provider/data/
+
+# Frontend (Next.js usa su propio .gitignore, pero añadimos los base por seguridad)
+node_modules/
+.next/
+out/
+build/
