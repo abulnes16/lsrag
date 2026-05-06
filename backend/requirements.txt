@@ -1,9 +1,9 @@
 fastapi
 uvicorn
 pydantic
-flashrag
-lightrag
-nanovectordb
+flashrag-dev
+lightrag-hku
+nano-vectordb
 networkx
 httpx
 requests

@@ -61,7 +61,7 @@ networks:
     driver: bridge
   backend-internal:
     driver: bridge
-    internal: true # Red privada para backend, ollama y data-provider
+    # internal: true # Comentado temporalmente para permitir descarga de datasets y modelos
 
 volumes:
   rag_data:

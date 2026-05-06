@@ -1,5 +1,6 @@
 import os
 import sys
+from datasets import load_dataset
 
 def download_datasets():
     print("Descargando datasets de FlashRAG: MSMarco-QA y Hotpot-QA")
@@ -13,8 +14,8 @@ def download_datasets():
     try:
         # Ejemplo con la librería datasets de HuggingFace si están subidos ahí
         # from datasets import load_dataset
-        # load_dataset("ms_marco", "v1.1", cache_dir=os.path.join(data_dir, "msmarco-qa"))
-        # load_dataset("hotpot_qa", "distractor", cache_dir=os.path.join(data_dir, "hotpot-qa"))
+        load_dataset("ms_marco", "v1.1", cache_dir=os.path.join(data_dir, "msmarco-qa"))
+        load_dataset("hotpot_qa", "distractor", cache_dir=os.path.join(data_dir, "hotpot-qa"))
         print(f"Los datos se almacenarán en: {data_dir}")
         print("La descarga de MSMarco-QA y Hotpot-QA ha sido orquestada.")
     except Exception as e:
