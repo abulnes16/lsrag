@@ -2,8 +2,9 @@ import os
 import asyncio
 from flashrag.retriever import BaseRetriever
 from lightrag import LightRAG
-from lightrag.llm import ollama_model_complete, ollama_embedding
+from lightrag.llm.ollama import ollama_model_complete, ollama_embed
 from lightrag.utils import EmbeddingFunc
+from typing import List, Dict
 
 
 class LightRetriever(BaseRetriever):

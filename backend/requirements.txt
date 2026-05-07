@@ -7,3 +7,4 @@ nano-vectordb
 networkx
 httpx
 requests
+numpy<2

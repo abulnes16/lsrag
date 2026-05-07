@@ -14,7 +14,9 @@ from modules import LightRetriever
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Starting up: Initializing LightRetriever...")
-    config = {} # Add relevant config if needed
+    config = {
+        'retrieval_method': 'semantic'
+    } # Add relevant config if needed
     retriever = LightRetriever(config)
     app.state.retriever = retriever
     
