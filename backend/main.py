@@ -2,8 +2,31 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import httpx
 import os
+import sys
+from contextlib import asynccontextmanager
 
-app = FastAPI(title="L-SRAG API")
+# Ensure 'src' is in the python path
+sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
+
+from data.data_ingestor import DataIngestor
+from modules import LightRetriever
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    print("Starting up: Initializing LightRetriever...")
+    config = {} # Add relevant config if needed
+    retriever = LightRetriever(config)
+    app.state.retriever = retriever
+    
+    print("Starting up: Running Data Ingestion...")
+    ingestor = DataIngestor(retriever)
+    ingestor.ingest_datasets(sample_size=50)
+    
+    yield
+    
+    print("Shutting down...")
+
+app = FastAPI(title="LSRAG API", lifespan=lifespan)
 
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
 
@@ -12,7 +35,7 @@ class QueryRequest(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to L-SRAG API"}
+    return {"message": "Welcome to LSRAG API"}
 
 @app.get("/health")
 def health_check():

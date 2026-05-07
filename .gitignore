@@ -56,7 +56,6 @@ venv.bak/
 docker-compose.override.yml
 
 # Datos (en caso de pruebas locales con volúmenes bind)
-data/
 backend/data/
 data-provider/data/
 
