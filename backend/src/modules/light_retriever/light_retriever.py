@@ -25,19 +25,20 @@ class LightRetriever(BaseRetriever):
             working_dir=self.working_dir,
             llm_model_func=ollama_model_complete,
             # Use phi3:mini model as SLM to test the results
-            llm_model_name='phi3:mini', 
+            llm_model_name='llama3.2:3b', 
             # Define embedding function
             embedding_func=EmbeddingFunc(
                 embedding_dim=1024,  
                 max_token_size=8192,
-                func=lambda texts: ollama_embedding(texts, embed_model="mxbai-embed-large")
+                func=lambda texts: ollama_embed(texts, embed_model="mxbai-embed-large")
             ),
-            chunk_token_size=600,
-            chunk_overlap_token_size=100
+            chunk_token_size=300,
+            chunk_overlap_token_size=50,
+            # CPU Optimization: Extreme throttling to avoid timeouts
+            llm_model_max_async=1,
+            embedding_func_max_async=2,
+            addon_params={"timeout": 1200} 
         )
-        
-        # Async initialization for local storage endpoints
-        asyncio.run(self.rag.initialize_storages())
         
         self.query_mode = config.get("lightrag_mode", "hybrid")
 

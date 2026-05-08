@@ -16,12 +16,12 @@ def download_datasets():
         # from datasets import load_dataset
         load_dataset(
             "RUC-NLPIR/FlashRAG_datasets", 
-            "msmarco_qa_train", 
+            "msmarco-qa", 
             cache_dir=os.path.join(data_dir, "msmarco-qa")
         )
         load_dataset(
             "RUC-NLPIR/FlashRAG_datasets",
-            "hotpotqa_train", 
+            "hotpotqa", 
             cache_dir=os.path.join(data_dir, "hotpot-qa")
         )
         print(f"Los datos se almacenarán en: {data_dir}")

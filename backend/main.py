@@ -11,18 +11,47 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 from data.data_ingestor import DataIngestor
 from modules import LightRetriever
 
+from flashrag.config import Config
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Starting up: Initializing LightRetriever...")
+    
+    # Since FlashRAG's package is missing basic_config.yaml, we pass a raw dict
+    # with all the necessary default parameters that BaseRetriever expects.
     config = {
-        'retrieval_method': 'semantic'
-    } # Add relevant config if needed
+        'retrieval_method': 'semantic',
+        'retrieval_topk': 5,
+        'retrieval_batch_size': 256,
+        'retrieval_use_fp16': False,
+        'retrieval_query_max_length': 128,
+        'save_retrieval_cache': False,
+        'use_retrieval_cache': False,
+        'retrieval_cache_path': None,
+        'faiss_gpu': False,
+        'use_sentence_transformer': False,
+        'index_path': None,
+        'corpus_path': None,
+        'retrieval_model_path': None,
+        'retrieval_pooling_method': 'mean',
+        'model2path': {},
+        'model2pooling': {},
+        'method2index': {},
+        'use_reranker': False,
+    }
+    
     retriever = LightRetriever(config)
+    
+    # Initialize storages asynchronously here since lifespan is already an async context
+    await retriever.rag.initialize_storages()
+    
     app.state.retriever = retriever
     
     print("Starting up: Running Data Ingestion...")
     ingestor = DataIngestor(retriever)
-    ingestor.ingest_datasets(sample_size=50)
+    await ingestor.ingest_datasets(sample_size=25)
+    
+   
     
     yield
     
