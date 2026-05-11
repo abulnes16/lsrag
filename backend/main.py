@@ -49,7 +49,7 @@ async def lifespan(app: FastAPI):
     
     print("Starting up: Running Data Ingestion...")
     ingestor = DataIngestor(retriever)
-    await ingestor.ingest_datasets(sample_size=25)
+    await ingestor.ingest_datasets(sample_size=0.001)
     
    
     

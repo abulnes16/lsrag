@@ -51,4 +51,4 @@ networks:
   frontend-backend:
     driver: bridge
 
-volumes: # Los datos ahora se guardan en el directorio local ./data para que los puedas ver
+# Los datos ahora se guardan en el directorio local ./data para que los puedas ver

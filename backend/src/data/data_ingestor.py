@@ -16,16 +16,21 @@ class DataIngestor:
         
         for folder_name, dataset_name in datasets_to_load:
             cache_dir = os.path.join(self.base_data_path, folder_name)
+            dataset_path = cache_dir
             try:
                 print(f"Loading {dataset_name} from cache at {cache_dir}...")
                 dataset = load_dataset("RUC-NLPIR/FlashRAG_datasets", dataset_name, cache_dir=cache_dir)
                 
-                # Check if 'train' exists, otherwise try other splits
-                if 'train' in dataset:
-                    sample_data = dataset['train'].select(range(min(sample_size, len(dataset['train']))))
-                else:
-                    first_split = list(dataset.keys())[0]
-                    sample_data = dataset[first_split].select(range(min(sample_size, len(dataset[first_split]))))
+                # Determine which split to use
+                split_name = 'train' if 'train' in dataset else list(dataset.keys())[0]
+                total_docs = len(dataset[split_name])
+                
+                # Calculate sample size: if < 1.0 treat as percentage, else as absolute count
+                actual_sample_size = int(total_docs * sample_size) if sample_size < 1.0 else int(sample_size)
+                actual_sample_size = max(1, min(actual_sample_size, total_docs))
+                
+                print(f"Sampling {actual_sample_size} documents ({(actual_sample_size/total_docs)*100:.4f}% of {total_docs}) from {dataset_name}")
+                sample_data = dataset[split_name].select(range(actual_sample_size))
                 
                 for item in sample_data:
                     # In MSMarco and HotpotQA, usually 'question' and 'answers' are relevant
