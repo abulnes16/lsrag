@@ -4,6 +4,7 @@ import httpx
 import os
 import sys
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 
 # Ensure 'src' is in the python path
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
@@ -17,8 +18,7 @@ from flashrag.config import Config
 async def lifespan(app: FastAPI):
     print("Starting up: Initializing LightRetriever...")
     
-    # Since FlashRAG's package is missing basic_config.yaml, we pass a raw dict
-    # with all the necessary default parameters that BaseRetriever expects.
+    
     config = {
         'retrieval_method': 'semantic',
         'retrieval_topk': 5,
@@ -42,7 +42,6 @@ async def lifespan(app: FastAPI):
     
     retriever = LightRetriever(config)
     
-    # Initialize storages asynchronously here since lifespan is already an async context
     await retriever.rag.initialize_storages()
     
     app.state.retriever = retriever
@@ -57,9 +56,20 @@ async def lifespan(app: FastAPI):
     
     print("Shutting down...")
 
+
+
 app = FastAPI(title="LSRAG API", lifespan=lifespan)
 
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # Allows all origins for local development
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
 
 class QueryRequest(BaseModel):
     query: str
@@ -74,21 +84,15 @@ def health_check():
 
 @app.post("/chat")
 async def chat(request: QueryRequest):
-    # Esto es un endpoint inicial que pasa la consulta a Ollama directamente.
-    # En el futuro aquí se integrará la lógica RAG con FlashRAG, LightRAG, NanoVectorDB y NetworkX.
-    async with httpx.AsyncClient() as client:
-        try:
-            response = await client.post(
-                f"{OLLAMA_BASE_URL}/api/generate",
-                json={
-                    "model": "phi3:mini",
-                    "prompt": request.query,
-                    "stream": False
-                },
-                timeout=60.0
-            )
-            response.raise_for_status()
-            data = response.json()
-            return {"response": data.get("response", "")}
-        except Exception as e:
-            return {"error": str(e)}
+    try:
+        # Use our custom RAG retriever!
+        retriever = app.state.retriever
+        results = await retriever.search(request.query)
+        
+        # The first result's contents will have the LightRAG generated answer
+        answer = results[0]["contents"]
+        
+        return {"response": answer}
+    except Exception as e:
+        print(f"Error in chat endpoint: {e}")
+        return {"error": str(e)}
