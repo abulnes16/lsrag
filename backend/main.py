@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import Optional
 import httpx
 import os
 import sys
@@ -26,7 +27,7 @@ async def lifespan(app: FastAPI):
         "chunk_overlap": 50,
         "timeout": 1200,
         "max_async": 1,
-        "lightrag_mode": "mix"
+        "lightrag_mode": "hybrid"
     }
     
     naive_config = {
@@ -77,6 +78,7 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
 class QueryRequest(BaseModel):
     query: str
     rag_type: str = "lightrag" # 'lightrag' or 'naiverag'
+    lightrag_mode: Optional[str] = None
 
 @app.get("/")
 def read_root():
@@ -90,7 +92,7 @@ def health_check():
 async def chat(request: QueryRequest):
     try:
         controller = app.state.query_controller
-        results = await controller.process_query(request.query, request.rag_type)
+        results = await controller.process_query(request.query, request.rag_type, request.lightrag_mode)
         
         # The output format for both services is a list of dicts with a 'contents' field
         answer = results[0]["contents"]

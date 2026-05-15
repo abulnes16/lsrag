@@ -1,6 +1,7 @@
 import os
 import uuid
 import ollama
+import numpy as np
 from typing import List, Dict
 from nano_vectordb import NanoVectorDB
 
@@ -54,11 +55,11 @@ class NaiveRAGService:
         upserts = []
         for i, chunk in enumerate(all_chunks):
             response = await self.client.embeddings(model=self.embed_model, prompt=chunk)
-            embedding = response['embedding']
+            embedding = np.array(response['embedding'])
             
             upserts.append({
-                "id": str(uuid.uuid4()),
-                "vector": embedding,
+                "__id__": str(uuid.uuid4()),
+                "__vector__": embedding,
                 "text": chunk
             })
             
@@ -73,7 +74,7 @@ class NaiveRAGService:
     async def retrieve(self, query: str, top_k: int = 5) -> str:
         """Embeds query and retrieves top K chunks from NanoVectorDB."""
         response = await self.client.embeddings(model=self.embed_model, prompt=query)
-        query_embedding = response['embedding']
+        query_embedding = np.array(response['embedding'])
         
         results = self.vdb.query(query_embedding, top_k=top_k)
         
@@ -82,17 +83,18 @@ class NaiveRAGService:
 
     async def generate(self, context: str, query: str) -> str:
         """Generates the final answer using Ollama API directly."""
-        prompt = f"""You are a helpful assistant answering questions based strictly on the provided context.
+        prompt = f"""
+        You are a helpful assistant answering questions based strictly on the provided context.
+        Context:
+        {context}
+        Question: {query}
+        """
         
-Context:
-{context}
-
-Question: {query}
-
-Answer:"""
-        
-        response = await self.client.generate(model=self.llm_model, prompt=prompt)
-        return response['response']
+        response = await self.client.chat(model=self.llm_model, messages=[
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": query}
+        ])
+        return response['message']['content']
 
     async def batch_search(self, query_list: List[str], num: int = 5) -> List[List[Dict]]:
         """Compatible interface with LightRAGService."""

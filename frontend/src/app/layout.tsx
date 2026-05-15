@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -25,9 +26,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white min-h-screen flex flex-col`}
       >
-        {children}
+        <header className="p-4 border-b border-gray-800 flex justify-between items-center bg-gray-950">
+          <div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+              LSRAG System
+            </h1>
+            <p className="text-gray-400 text-xs">Light Sovering Retrieval-Augmented Generation</p>
+          </div>
+          <nav className="flex space-x-4">
+            <Link href="/" className="text-sm font-medium hover:text-blue-400 transition-colors">
+              General Chat
+            </Link>
+            <Link href="/experiment" className="text-sm font-medium hover:text-purple-400 transition-colors">
+              Experiment Tab
+            </Link>
+          </nav>
+        </header>
+        <main className="flex-1 flex flex-col">
+          {children}
+        </main>
       </body>
     </html>
   );
