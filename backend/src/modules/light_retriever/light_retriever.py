@@ -36,13 +36,14 @@ class LightRAGService:
         
         self.query_mode = config.get("lightrag_mode", "mix")
 
-    async def batch_search(self, query_list: List[str], num: int = 5) -> List[List[Dict]]:
+    async def batch_search(self, query_list: List[str], num: int = 5, mode: str = None) -> List[List[Dict]]:
         batch_results = []
         for query in query_list:
             # Use aquery (async) instead of query (sync)
+            current_mode = mode or self.query_mode
             lightrag_output = await self.rag.aquery(
                 query, 
-                param=QueryParam(mode=self.query_mode)
+                param=QueryParam(mode=current_mode)
             )
             
             batch_results.append([{
@@ -53,6 +54,6 @@ class LightRAGService:
             
         return batch_results
 
-    async def search(self, query: str, num: int = 5) -> List[Dict]:
-        results = await self.batch_search([query], num)
+    async def search(self, query: str, num: int = 5, mode: str = None) -> List[Dict]:
+        results = await self.batch_search([query], num, mode=mode)
         return results[0]

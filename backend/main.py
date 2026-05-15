@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import Optional
 import httpx
 import os
 import sys
@@ -10,15 +11,16 @@ from fastapi.middleware.cors import CORSMiddleware
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
 from data.data_ingestor import DataIngestor
-from modules import LightRAGService
+from modules import LightRAGService, NaiveRAGService
+from controllers.query_controller import QueryController
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Starting up: Initializing LightRAGService...")
+    print("Starting up: Initializing RAG Services...")
     
-    config = {
+    lightrag_config = {
         "working_dir": os.path.join(os.getenv("DATA_PATH", "/app/data"), "lightrag_cache"),
-        "llm_model": "llama3.2:3b",
+        "llm_model": "phi3:mini",
         "embed_model": "mxbai-embed-large",
         "embed_dim": 1024,
         "chunk_size": 300,
@@ -28,14 +30,28 @@ async def lifespan(app: FastAPI):
         "lightrag_mode": "hybrid"
     }
     
-    retriever = LightRAGService(config)
+    naive_config = {
+        "working_dir": os.path.join(os.getenv("DATA_PATH", "/app/data"), "naive_data"),
+        "llm_model": "phi3:mini",
+        "embed_model": "mxbai-embed-large",
+        "embed_dim": 1024,
+        "chunk_size": 300,
+        "chunk_overlap": 50,
+    }
     
-    await retriever.rag.initialize_storages()
+    # Initialize both services
+    light_service = LightRAGService(lightrag_config)
+    naive_service = NaiveRAGService(naive_config)
     
-    app.state.retriever = retriever
+    await light_service.rag.initialize_storages()
     
-    print("Starting up: Running Data Ingestion...")
-    ingestor = DataIngestor(retriever)
+    # Store services and controller in app state
+    app.state.light_service = light_service
+    app.state.naive_service = naive_service
+    app.state.query_controller = QueryController(light_service, naive_service)
+    
+    print("Starting up: Running Data Ingestion for both systems...")
+    ingestor = DataIngestor(light_service, naive_service)
     await ingestor.ingest_datasets(sample_size=0.001)
     
    
@@ -61,6 +77,8 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434")
 
 class QueryRequest(BaseModel):
     query: str
+    rag_type: str = "lightrag" # 'lightrag' or 'naiverag'
+    lightrag_mode: Optional[str] = None
 
 @app.get("/")
 def read_root():
@@ -73,11 +91,10 @@ def health_check():
 @app.post("/chat")
 async def chat(request: QueryRequest):
     try:
-        # Use our custom RAG retriever!
-        retriever = app.state.retriever
-        results = await retriever.search(request.query)
+        controller = app.state.query_controller
+        results = await controller.process_query(request.query, request.rag_type, request.lightrag_mode)
         
-        # The first result's contents will have the LightRAG generated answer
+        # The output format for both services is a list of dicts with a 'contents' field
         answer = results[0]["contents"]
         
         return {"response": answer}

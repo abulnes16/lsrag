@@ -1,1 +1,2 @@
 from .light_retriever import LightRAGService
+from .naive_retriever import NaiveRAGService
