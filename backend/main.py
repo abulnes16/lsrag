@@ -10,37 +10,25 @@ from fastapi.middleware.cors import CORSMiddleware
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
 from data.data_ingestor import DataIngestor
-from modules import LightRetriever
-
-from flashrag.config import Config
+from modules import LightRAGService
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Starting up: Initializing LightRetriever...")
-    
+    print("Starting up: Initializing LightRAGService...")
     
     config = {
-        'retrieval_method': 'semantic',
-        'retrieval_topk': 5,
-        'retrieval_batch_size': 256,
-        'retrieval_use_fp16': False,
-        'retrieval_query_max_length': 128,
-        'save_retrieval_cache': False,
-        'use_retrieval_cache': False,
-        'retrieval_cache_path': None,
-        'faiss_gpu': False,
-        'use_sentence_transformer': False,
-        'index_path': None,
-        'corpus_path': None,
-        'retrieval_model_path': None,
-        'retrieval_pooling_method': 'mean',
-        'model2path': {},
-        'model2pooling': {},
-        'method2index': {},
-        'use_reranker': False,
+        "working_dir": os.path.join(os.getenv("DATA_PATH", "/app/data"), "lightrag_cache"),
+        "llm_model": "llama3.2:3b",
+        "embed_model": "mxbai-embed-large",
+        "embed_dim": 1024,
+        "chunk_size": 300,
+        "chunk_overlap": 50,
+        "timeout": 1200,
+        "max_async": 1,
+        "lightrag_mode": "hybrid"
     }
     
-    retriever = LightRetriever(config)
+    retriever = LightRAGService(config)
     
     await retriever.rag.initialize_storages()
     

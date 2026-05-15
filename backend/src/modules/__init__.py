@@ -1,1 +1,1 @@
-from .light_retriever import LightRetriever
+from .light_retriever import LightRAGService

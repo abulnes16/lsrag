@@ -1,10 +1,10 @@
 fastapi
 uvicorn
 pydantic
-flashrag-dev
 lightrag-hku
 nano-vectordb
 networkx
 httpx
 requests
 numpy<2
+datasets
