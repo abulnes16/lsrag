@@ -1,54 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import { sendQuery } from "@/services/api";
+import { useChat } from "@/hooks/useChat";
+import MessageBubble from "./MessageBubble";
 
 export default function ChatModule() {
-  const [messages, setMessages] = useState<{ role: "user" | "bot"; text: string }[]>([]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSend = async () => {
-    if (!input.trim()) return;
-
-    const userMessage = input.trim();
-    setMessages((prev) => [...prev, { role: "user", text: userMessage }]);
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      const response = await sendQuery(userMessage);
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", text: response.response || response.error || "No response received." },
-      ]);
-    } catch (_error) {
-      setMessages((prev) => [
-        ...prev,
-        { role: "bot", text: "Error connecting to the server." },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { messages, input, setInput, isLoading, handleSend } = useChat();
 
   return (
     <div className="flex flex-col h-full max-w-4xl mx-auto border border-gray-700 rounded-lg overflow-hidden bg-gray-900 text-gray-100">
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 flex flex-col">
         {messages.length === 0 ? (
           <div className="text-center text-gray-500 mt-10">Start a conversation with L-SRAG...</div>
         ) : (
           messages.map((msg, idx) => (
-            <div
-              key={idx}
-              className={`max-w-[80%] p-3 rounded-lg ${
-                msg.role === "user"
-                  ? "bg-blue-600 text-white self-end ml-auto"
-                  : "bg-gray-800 text-gray-200 self-start mr-auto"
-              }`}
-            >
-              {msg.text}
-            </div>
+            <MessageBubble key={idx} msg={msg} />
           ))
         )}
         {isLoading && (
@@ -70,7 +35,7 @@ export default function ChatModule() {
         <button
           onClick={handleSend}
           disabled={isLoading}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 cursor-pointer"
         >
           Send
         </button>
