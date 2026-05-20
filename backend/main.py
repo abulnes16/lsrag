@@ -12,6 +12,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
 from data.data_ingestor import DataIngestor
 from modules import LightRAGService, NaiveRAGService
+from modules.metrics.rag_metrics import RAGMetrics
 from controllers.query_controller import QueryController
 
 @asynccontextmanager
@@ -48,7 +49,8 @@ async def lifespan(app: FastAPI):
     # Store services and controller in app state
     app.state.light_service = light_service
     app.state.naive_service = naive_service
-    app.state.query_controller = QueryController(light_service, naive_service)
+    metrics_service = RAGMetrics()
+    app.state.query_controller = QueryController(light_service, naive_service, metrics_service)
     
     print("Starting up: Running Data Ingestion for both systems...")
     ingestor = DataIngestor(light_service, naive_service)
@@ -80,6 +82,11 @@ class QueryRequest(BaseModel):
     rag_type: str = "lightrag" # 'lightrag' or 'naiverag'
     lightrag_mode: Optional[str] = None
 
+class EvaluateRequest(BaseModel):
+    query: str
+    reference: str
+    lightrag_mode: Optional[str] = "mix"
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to LSRAG API"}
@@ -100,4 +107,14 @@ async def chat(request: QueryRequest):
         return {"response": answer}
     except Exception as e:
         print(f"Error in chat endpoint: {e}")
+        return {"error": str(e)}
+
+@app.post("/evaluate")
+async def evaluate(request: EvaluateRequest):
+    try:
+        controller = app.state.query_controller
+        results = await controller.evaluate_rag(request.query, request.reference, request.lightrag_mode)
+        return results
+    except Exception as e:
+        print(f"Error in evaluate endpoint: {e}")
         return {"error": str(e)}

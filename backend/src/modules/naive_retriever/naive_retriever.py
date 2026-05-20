@@ -71,7 +71,7 @@ class NaiveRAGService:
         self.vdb.save()
         print(f"[NaiveRAG] Initialization complete. Stored {len(upserts)} chunks in NanoVectorDB.")
 
-    async def retrieve(self, query: str, top_k: int = 5) -> str:
+    async def retrieve(self, query: str, top_k: int = 5) -> List[str]:
         """Embeds query and retrieves top K chunks from NanoVectorDB."""
         response = await self.client.embeddings(model=self.embed_model, prompt=query)
         query_embedding = np.array(response['embedding'])
@@ -79,14 +79,15 @@ class NaiveRAGService:
         results = self.vdb.query(query_embedding, top_k=top_k)
         
         contexts = [res['text'] for res in results]
-        return "\n\n".join(contexts)
+        return contexts
 
-    async def generate(self, context: str, query: str) -> str:
+    async def generate(self, contexts: List[str], query: str) -> str:
         """Generates the final answer using Ollama API directly."""
+        context_str = "\n\n".join(contexts)
         prompt = f"""
         You are a helpful assistant answering questions based strictly on the provided context.
         Context:
-        {context}
+        {context_str}
         Question: {query}
         """
         
@@ -100,13 +101,13 @@ class NaiveRAGService:
         """Compatible interface with LightRAGService."""
         batch_results = []
         for query in query_list:
-            context = await self.retrieve(query, top_k=num)
-            answer = await self.generate(context, query)
+            contexts = await self.retrieve(query, top_k=num)
+            answer = await self.generate(contexts, query)
             
             batch_results.append([{
                 "id": "naive_rag_phi3",
                 "contents": answer,
-                "score": 1.0
+                "contexts": contexts
             }])
         return batch_results
 

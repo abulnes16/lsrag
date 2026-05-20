@@ -4,7 +4,7 @@ export async function sendQuery(query: string, rag_type?: string, lightrag_mode?
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
   try {
-    const payload: any = { query };
+    const payload: Record<string, unknown> = { query };
     if (rag_type) payload.rag_type = rag_type;
     if (lightrag_mode) payload.lightrag_mode = lightrag_mode;
 

@@ -22,7 +22,7 @@ export default function ChatModule() {
         ...prev,
         { role: "bot", text: response.response || response.error || "No response received." },
       ]);
-    } catch (error) {
+    } catch (_error) {
       setMessages((prev) => [
         ...prev,
         { role: "bot", text: "Error connecting to the server." },

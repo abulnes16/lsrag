@@ -46,9 +46,17 @@ class LightRAGService:
                 param=QueryParam(mode=current_mode)
             )
             
+            contexts_output = await self.rag.aquery(
+                query, 
+                param=QueryParam(mode=current_mode, only_need_context=True)
+            )
+            
+            contexts = [contexts_output] if isinstance(contexts_output, str) else contexts_output
+            
             batch_results.append([{
                 "id": f"ollama_phi3mini_{self.query_mode}",
                 "contents": lightrag_output,
+                "contexts": contexts,
                 "score": 1.0
             }])
             
