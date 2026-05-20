@@ -1,6 +1,6 @@
-# L-SRAG (Light Search Retrieval-Augmented Generation)
+# LSRAG (Light-Search Retrieval-Augmented Generation)
 
-L-SRAG is a full-stack, containerized application designed to evaluate, compare, and experiment with different Retrieval-Augmented Generation (RAG) paradigms. It provides a side-by-side comparison interface between a baseline **NaiveRAG** approach and an advanced **LightRAG** system. The platform allows users to not only chat with the knowledge base but also evaluate the quality of the generated answers against ground-truth references using industry-standard semantic and ranking metrics.
+LSRAG is a full-stack, containerized application designed to evaluate, compare, and experiment with a RAG system using SLM locally to preserve the sovereignity of the data by keeping it in the user local computer. It functions as a experimental prototype of RAG system using Graph and Vectorial retrieval  using SLM. It provides a side-by-side comparison interface between a baseline **NaiveRAG** approach and an advanced **LightRAG** system. The platform allows users to not only chat with the knowledge base but also evaluate the quality of the generated answers against ground-truth references using industry-standard semantic and ranking metrics.
 
 ## 🌟 Key Features
 
