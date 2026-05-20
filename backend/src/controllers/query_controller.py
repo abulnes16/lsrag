@@ -35,7 +35,13 @@ class QueryController:
             reference=reference
         )
         return {
-            "naive": naive_metrics,
-            "lightrag": lightrag_metrics
+            "naive": {
+                "response": naive_response[0]["contents"],
+                "metrics": naive_metrics
+            },
+            "lightrag": {
+                "response": lightrag_response[0]["contents"],
+                "metrics": lightrag_metrics
+            }
         }
         

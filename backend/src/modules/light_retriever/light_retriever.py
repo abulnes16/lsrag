@@ -46,12 +46,21 @@ class LightRAGService:
                 param=QueryParam(mode=current_mode)
             )
             
-            contexts_output = await self.rag.aquery(
+            # Query context structured results using aquery_llm
+            contexts_res = await self.rag.aquery_llm(
                 query, 
                 param=QueryParam(mode=current_mode, only_need_context=True)
             )
             
-            contexts = [contexts_output] if isinstance(contexts_output, str) else contexts_output
+            # Extract individual text chunks if available
+            chunks = contexts_res.get("data", {}).get("chunks", [])
+            contexts = [c["content"] for c in chunks if "content" in c]
+            
+            # Fallback to the full context string if no chunks are parsed
+            if not contexts:
+                content = contexts_res.get("llm_response", {}).get("content", "")
+                if content:
+                    contexts = [content]
             
             batch_results.append([{
                 "id": f"ollama_phi3mini_{self.query_mode}",
