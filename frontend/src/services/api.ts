@@ -1,29 +1,41 @@
-export async function sendQuery(query: string, rag_type?: string, lightrag_mode?: string) {
-  // Cuando se ejecuta en el cliente, NEXT_PUBLIC_API_URL es útil, 
-  // O podemos usar un proxy /api si evitamos CORS, pero para este caso usaremos directo el endpoint expuesto.
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+import { QueryResponse, EvaluateResponse } from "@/models";
 
-  try {
-    const payload: any = { query };
-    if (rag_type) payload.rag_type = rag_type;
-    if (lightrag_mode) payload.lightrag_mode = lightrag_mode;
+class ApiClient {
+  private baseUrl: string;
 
-    const response = await fetch(`${API_URL}/chat`, {
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
+
+  private async post<T>(endpoint: string, data: Record<string, unknown>): Promise<T> {
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(data),
     });
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error(`API error on ${endpoint}: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error communicating with the backend:", error);
-    throw error;
+    return response.json() as Promise<T>;
+  }
+
+  public async chat(query: string, ragType?: string, lightragMode?: string): Promise<QueryResponse> {
+    const payload: Record<string, unknown> = { query };
+    if (ragType) payload.rag_type = ragType;
+    if (lightragMode) payload.lightrag_mode = lightragMode;
+    return this.post<QueryResponse>("/chat", payload);
+  }
+
+  public async evaluate(query: string, reference: string, lightragMode?: string): Promise<EvaluateResponse> {
+    const payload: Record<string, unknown> = { query, reference };
+    if (lightragMode) payload.lightrag_mode = lightragMode;
+    return this.post<EvaluateResponse>("/evaluate", payload);
   }
 }
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+export const api = new ApiClient(API_URL);

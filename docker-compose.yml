@@ -39,6 +39,8 @@ services:
     environment:
       - OLLAMA_HOST=http://host.docker.internal:11434
       - DATA_PATH=/app/data
+    env_file:
+      - ./backend/.env
     restart: unless-stopped
 
   data-provider:
