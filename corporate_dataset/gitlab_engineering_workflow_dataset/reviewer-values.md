@@ -1,7 +1,3 @@
----
-title: Code Review Values
-description: "GitLab team members' code review values"
----
 
 ## Reviewer values
 

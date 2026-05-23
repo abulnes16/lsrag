@@ -7,6 +7,7 @@ from contextlib import asynccontextmanager
 # Ensure 'src' is in the python path
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
+from utils import get_lightrag_working_dir, get_naiverag_working_dir
 from data.data_ingestor import DataIngestor
 from modules import LightRAGService, NaiveRAGService
 from modules.metrics.rag_metrics import RAGMetrics
@@ -25,7 +26,7 @@ class LSRAGAPI:
         print("Starting up: Initializing RAG Services...")
         
         lightrag_config = {
-            "working_dir": os.path.join(os.getenv("DATA_PATH", "/app/data"), "lightrag_cache"),
+            "working_dir": get_lightrag_working_dir(),
             "llm_model": "phi3:mini",
             "embed_model": "mxbai-embed-large",
             "embed_dim": 1024,
@@ -37,7 +38,7 @@ class LSRAGAPI:
         }
         
         naive_config = {
-            "working_dir": os.path.join(os.getenv("DATA_PATH", "/app/data"), "naive_data"),
+            "working_dir": get_naiverag_working_dir(),
             "llm_model": "phi3:mini",
             "embed_model": "mxbai-embed-large",
             "embed_dim": 1024,

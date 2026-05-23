@@ -1,6 +1,3 @@
----
-title: "Release/Feature Determination Workflow"
----
 
 This document explains the workflow for determining if a feature will be included in a milestone release for the purposes of inclusion in the release blog post.
 

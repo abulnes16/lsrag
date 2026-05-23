@@ -36,9 +36,12 @@ services:
     volumes:
       - ./backend:/app
       - ./data:/app/data
+      - ./corporate_dataset/gitlab_engineering_workflow_dataset:/app/corporate_dataset
     environment:
       - OLLAMA_HOST=http://host.docker.internal:11434
       - DATA_PATH=/app/data
+      - LIGHTRAG_DIR=${LIGHTRAG_DIR:-lightrag_cache}
+      - CORPORATE_DATASET_PATH=/app/corporate_dataset
     env_file:
       - ./backend/.env
     restart: unless-stopped

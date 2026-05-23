@@ -12,3 +12,4 @@ ollama
 ragas
 openai
 scikit-learn
+langchain-community<0.3.0

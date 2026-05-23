@@ -101,6 +101,32 @@ Queries both NaiveRAG and LightRAG simultaneously, extracts retrieved chunks, ca
   "lightrag_mode": "mix"
 }
 ```
+## 🌍 Environment Switching
+
+The application supports switching between two environments: **experiment** (standard public QA datasets) and **corporate** (GitLab Engineering Workflow dataset).
+
+The working directories and datasets loaded by the backend services are controlled by the `LIGHTRAG_DIR` environment variable, configured via Docker Compose environment files:
+
+| Environment | Env File | LightRAG Cache Dir | NaiveRAG Cache Dir | Ingested Dataset |
+| :--- | :--- | :--- | :--- | :--- |
+| **experiment** (Default) | `.env.experiment` | `lightrag_cache` | `naive_data` | `msmarco-qa` & `hotpotqa` |
+| **corporate** | `.env.corporate` | `corporate_lightrag_cache` | `corporate_naive_data` | GitLab Engineering Workflow (`*.md`) |
+
+### How to Switch and Start the Containers
+
+1. **Start the Experiment Environment**:
+   To run the default experiment configuration:
+   ```bash
+   docker compose --env-file .env.experiment up --build
+   ```
+   *(Or simply run `docker compose up --build` since the default `.env` file points to the experiment configuration).*
+
+2. **Start the Corporate Environment**:
+   To run the corporate configuration:
+   ```bash
+   docker compose --env-file .env.corporate up --build
+   ```
+   *In this environment, the backend automatically reads and ingests the GitLab Markdown documents from `./corporate_dataset/gitlab_engineering_workflow_dataset` (mounted into the container).*
 
 ## 📄 License
 This project was built for evaluating Search Augmented Generation techniques. All rights reserved.

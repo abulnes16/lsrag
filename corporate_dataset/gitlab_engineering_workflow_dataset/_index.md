@@ -1,7 +1,3 @@
----
-title: "Engineering Workflow"
-description: "This document explains the workflow for anyone working with issues in GitLab Inc."
----
 
 This document explains the workflow for anyone working with issues in GitLab Inc.
 For the workflow that applies to the wider community see the [contributing guide](https://docs.gitlab.com/ee/development/contributing/).

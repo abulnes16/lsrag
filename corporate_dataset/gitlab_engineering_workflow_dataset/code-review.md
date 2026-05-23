@@ -1,7 +1,3 @@
----
-title: Code Review Guidelines
-description: "Code reviews are mandatory for every merge request, you should get familiar with and follow our Code Review Guidelines."
----
 
 ## Overview
 

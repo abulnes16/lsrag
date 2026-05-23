@@ -46,9 +46,34 @@ class DataIngestor:
                 
         return texts_to_insert
 
+    def _get_corporate_texts(self):
+        corporate_dir = os.getenv("CORPORATE_DATASET_PATH", "/app/corporate_dataset")
+        texts_to_insert = []
+        if not os.path.exists(corporate_dir):
+            print(f"Corporate dataset directory not found at: {corporate_dir}")
+            return texts_to_insert
+            
+        print(f"Loading corporate dataset from {corporate_dir}...")
+        for root, dirs, files in os.walk(corporate_dir):
+            for file in files:
+                if file.endswith('.md'):
+                    file_path = os.path.join(root, file)
+                    try:
+                        with open(file_path, 'r', encoding='utf-8') as f:
+                            content = f.read()
+                            if content.strip():
+                                texts_to_insert.append(content)
+                                print(f"Loaded corporate file: {file}")
+                    except Exception as e:
+                        print(f"Error reading file {file_path}: {e}")
+        return texts_to_insert
+
     async def ingest_datasets(self, sample_size=50):
         """Maintains backwards compatibility, runs both if configured."""
-        texts = self._get_texts(sample_size)
+        if os.getenv("LIGHTRAG_DIR", "lightrag_cache") == "corporate_lightrag_cache":
+            texts = self._get_corporate_texts()
+        else:
+            texts = self._get_texts(sample_size)
         
         if not texts:
             print("No documents were found to ingest.")
