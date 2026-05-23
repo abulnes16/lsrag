@@ -54,8 +54,8 @@ class NaiveRAGService:
         
         upserts = []
         for i, chunk in enumerate(all_chunks):
-            response = await self.client.embeddings(model=self.embed_model, prompt=chunk)
-            embedding = np.array(response['embedding'])
+            response = await self.client.embed(model=self.embed_model, input=chunk, truncate=True)
+            embedding = np.array(response['embeddings'][0])
             
             upserts.append({
                 "__id__": str(uuid.uuid4()),
@@ -63,6 +63,7 @@ class NaiveRAGService:
                 "text": chunk
             })
             
+            print(f"[NaiveRAG] Chunk {i+1}/{len(all_chunks)} embedded.")
             if (i + 1) % 100 == 0:
                 print(f"[NaiveRAG] Embedded {i+1}/{len(all_chunks)} chunks...")
                 
@@ -73,8 +74,8 @@ class NaiveRAGService:
 
     async def retrieve(self, query: str, top_k: int = 5) -> List[str]:
         """Embeds query and retrieves top K chunks from NanoVectorDB."""
-        response = await self.client.embeddings(model=self.embed_model, prompt=query)
-        query_embedding = np.array(response['embedding'])
+        response = await self.client.embed(model=self.embed_model, input=query, truncate=True)
+        query_embedding = np.array(response['embeddings'][0])
         
         results = self.vdb.query(query_embedding, top_k=top_k)
         

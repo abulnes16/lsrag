@@ -42,7 +42,7 @@ class LSRAGAPI:
             "llm_model": "phi3:mini",
             "embed_model": "mxbai-embed-large",
             "embed_dim": 1024,
-            "chunk_size": 300,
+            "chunk_size": 200,
             "chunk_overlap": 50,
         }
         

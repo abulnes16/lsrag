@@ -44,13 +44,13 @@ class LightRAGService:
             current_mode = mode or self.query_mode
             lightrag_output = await self.rag.aquery(
                 query, 
-                param=QueryParam(mode=current_mode)
+                param=QueryParam(mode=current_mode, top_k=num, chunk_top_k=num)
             )
             
             # Query context structured results using aquery_llm
             contexts_res = await self.rag.aquery_llm(
                 query, 
-                param=QueryParam(mode=current_mode, only_need_context=True)
+                param=QueryParam(mode=current_mode, only_need_context=True, top_k=num, chunk_top_k=num)
             )
             
             # Extract individual text chunks if available
