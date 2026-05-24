@@ -43,8 +43,12 @@ class NaiveRAGService:
             i += (self.chunk_size - self.chunk_overlap)
         return chunks
 
-    async def initialize(self, texts: List[str]):
+    async def initialize(self, texts: List[str], force: bool = False):
         """Chunks texts, computes embeddings, and stores in NanoVectorDB."""
+        if len(self.vdb) > 0 and not force:
+            print(f"[NaiveRAG] Database already contains {len(self.vdb)} records. Skipping initialization. (Delete the database file {self.db_path} to force re-initialization)")
+            return
+            
         print(f"[NaiveRAG] Initializing with {len(texts)} documents...")
         all_chunks = []
         for text in texts:

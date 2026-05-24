@@ -58,7 +58,6 @@ class LSRAGAPI:
         metrics_service = RAGMetrics()
         app.state.query_controller = QueryController(light_service, naive_service, metrics_service)
         
-        print("Starting up: Running Data Ingestion for both systems...")
         ingestor = DataIngestor(light_service, naive_service)
         await ingestor.ingest_datasets(sample_size=0.001)
         
