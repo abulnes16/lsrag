@@ -53,15 +53,15 @@
   },
   {
     "query": "Which magazine was started first: Arthur's Magazine or First for Women?",
-    "reference": "Arthur's Magazine was started first."
+    "reference": "Arthur's Magazine was started in 1844, whereas First for Women was started in 1989. Therefore, Arthur's Magazine was started first."
   },
   {
     "query": "The Oberoi family is part of a hotel company that has its head office in which city?",
-    "reference": "The Oberoi Group has its head office in Delhi."
+    "reference": "The Oberoi family is associated with The Oberoi Group (MSK Hotels), which is a hotel company that has its head office in Delhi, India."
   },
   {
     "query": "Musician and satirist Allie Goertz wrote a song about \"The Simpsons\" character Milhouse. Who did Matt Groening name Milhouse after?",
-    "reference": "Milhouse was named after President Richard Nixon."
+    "reference": "Allie Goertz wrote a song about the character Milhouse Van Houten. Matt Groening named the character Milhouse after U.S. President Richard Nixon (whose middle name was Milhous)."
   },
   {
     "query": "What nationality was James Henry Miller's wife?",
@@ -73,11 +73,11 @@
   },
   {
     "query": "Which tennis player won more Grand Slam titles: Henri Leconte or Jonathan Stark?",
-    "reference": "Jonathan Stark won more Grand Slam titles."
+    "reference": "Henri Leconte won 1 Grand Slam title (the 1984 French Open men's doubles), whereas Jonathan Stark won 2 Grand Slam titles (the 1994 French Open men's doubles and 1995 Wimbledon mixed doubles). Therefore, Jonathan Stark won more Grand Slam titles."
   },
   {
     "query": "Which genus of moth in the world's seventh-largest country contains only one species?",
-    "reference": "The moth genus is Crambidae."
+    "reference": "The world's seventh-largest country by area is India, and the genus of moth found in India that contains only one species is Indogrammodes (specifically Indogrammodes pectinicornalis)."
   },
   {
     "query": "Who was once considered the best kickboxer in the world, but has been involved in numerous controversies relating to unsportsmanlike conduct in the sport and crimes of violence outside of the ring?",
@@ -97,6 +97,6 @@
   },
   {
     "query": "Which narrator of \"Frontier\" starred in the movie \"Gunmen from Laredo\"?",
-    "reference": "Walter Darwin Coy starred in the movie."
+    "reference": "Walter Coy (Walter Darwin Coy) was the narrator of the television series 'Frontier', and he also starred as Gil Reardon in the 1959 Western movie 'Gunmen from Laredo'."
   }
 ]

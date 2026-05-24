@@ -5,6 +5,7 @@ from lightrag import LightRAG, QueryParam
 from lightrag.llm.ollama import ollama_model_complete, ollama_embed
 from lightrag.utils import EmbeddingFunc
 from typing import List, Dict
+from utils import get_lightrag_working_dir
 
 
 class LightRAGService:
@@ -12,7 +13,7 @@ class LightRAGService:
     Standalone Service for LightRAG using local Ollama models.
     """
     def __init__(self, config: dict):
-        self.working_dir = config.get("working_dir", os.path.join(os.getenv("DATA_PATH", "/app/data"), "lightrag_cache"))
+        self.working_dir = config.get("working_dir", get_lightrag_working_dir())
         
         if not os.path.exists(self.working_dir):
             os.makedirs(self.working_dir)
@@ -43,13 +44,13 @@ class LightRAGService:
             current_mode = mode or self.query_mode
             lightrag_output = await self.rag.aquery(
                 query, 
-                param=QueryParam(mode=current_mode)
+                param=QueryParam(mode=current_mode, top_k=num, chunk_top_k=num)
             )
             
             # Query context structured results using aquery_llm
             contexts_res = await self.rag.aquery_llm(
                 query, 
-                param=QueryParam(mode=current_mode, only_need_context=True)
+                param=QueryParam(mode=current_mode, only_need_context=True, top_k=num, chunk_top_k=num)
             )
             
             # Extract individual text chunks if available

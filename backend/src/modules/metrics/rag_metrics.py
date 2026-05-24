@@ -10,23 +10,50 @@ from sklearn.metrics import ndcg_score
 class RAGMetrics:
     def __init__(self):
         self.client = AsyncOpenAI()
-        self.llm = llm_factory("gpt-4o-mini", client=self.client)
+        self.llm = llm_factory("gpt-4o-mini", client=self.client, max_tokens=8192)
         self.embeddings = embedding_factory("openai", model="text-embedding-3-small", client=self.client)
         self.faithfullness_scorer = Faithfulness(llm=self.llm)
         self.recall_scorer = ContextRecall(llm=self.llm)
         self.relevancy_scorer = AnswerRelevancy(llm=self.llm, embeddings = self.embeddings)
     
+    def truncate_contexts(self, contexts: list[str], max_chars: int = 6000) -> list[str]:
+        if not contexts:
+            return contexts
+        total_len = sum(len(c) for c in contexts)
+        if total_len <= max_chars:
+            return contexts
+        
+        truncated = []
+        current_len = 0
+        for c in contexts:
+            if current_len >= max_chars:
+                break
+            available = max_chars - current_len
+            if len(c) <= available:
+                truncated.append(c)
+                current_len += len(c)
+            else:
+                truncated_item = c[:available]
+                last_space = truncated_item.rfind(' ')
+                if last_space != -1:
+                    truncated_item = truncated_item[:last_space]
+                truncated.append(truncated_item + "...")
+                break
+        return truncated
+
     async def calculate_faithfulness(self, question: str, answer: str, contexts: list[str]):
+        truncated = self.truncate_contexts(contexts)
         return await self.faithfullness_scorer.ascore(
             user_input=question,
             response=answer,
-            retrieved_contexts=contexts
+            retrieved_contexts=truncated
         )
     
     async def calculate_recall(self, question: str, reference: str, contexts: list[str]):
+        truncated = self.truncate_contexts(contexts)
         return await self.recall_scorer.ascore(
            user_input=question,
-           retrieved_contexts=contexts,
+           retrieved_contexts=truncated,
            reference=reference
         )
     
