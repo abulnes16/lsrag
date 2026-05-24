@@ -30,6 +30,35 @@ The project is structured into three main Dockerized components:
 3. **Data Provider (`/data-provider`)**:
    - A short-lived initialization container that fetches and sets up the embedding/vector data in the shared `./data` volume.
 
+## Design Decisions
+
+This section provides the theoretical and practical justifications for the primary hyperparameters and architectural decisions made in the LSRAG system.
+
+### 1. RAG Hyperparameters
+
+| Parameter | NaiveRAG Value | LightRAG Value | Architectural Rationale |
+| :--- | :--- | :--- | :--- |
+| **Chunk Size (`chunk_size`)** | `200` words | `300` tokens | **Fair Baseline Comparison & Embedding Limits:** LightRAG splits text by *tokens* (using tiktoken), whereas NaiveRAG splits text by *words* (whitespace-based). Because 1 English word $\approx$ 1.35–1.4 tokens, a 200-word Naive chunk is physically equivalent to about 270–280 tokens. This makes the text blocks compared between systems almost identical. Additionally, the local embedding model `mxbai-embed-large` has a hard context limit of **512 tokens**; keeping chunks under 300 tokens guarantees no text is lost to truncation during embedding. |
+| **Chunk Overlap (`chunk_overlap`)** | `50` words | `50` tokens | **Semantic Continuity:** A 15–25% overlap acts as a safety boundary. It prevents semantic fragmentation by ensuring that entities or core facts that are split across chunk borders are preserved and readable in both adjacent contexts. |
+| **Top-K Retrieval (`top_k`)** | `5` | `5` | **Focused Context & Evaluation Safety:** We modified the LightRAG retrieval parameters (`top_k` and `chunk_top_k`) to dynamically match NaiveRAG's query limit (`num=5`). This ensures both RAG systems generate their final answers and evaluate metrics on the same retrieval depth. It also limits the prompt token count passed to the LLM and the evaluation judge, preventing API timeouts and cost inflation. |
+| **Embedding Dimension (`embed_dim`)** | `1024` | `1024` | **Model Alignment:** This parameter is strictly determined by the embedding model architecture. `mxbai-embed-large` produces 1024-dimensional vectors, so the vector database storage schema (`NanoVectorDB`) must match this value to perform accurate cosine similarity queries. |
+
+### 2. Model Selection Strategy
+
+*   **Data Sovereignty & Local SLM (`phi3:mini`)**:
+    *   *Decision:* Local execution of the primary LLM is a core requirement to keep private datasets (like corporate GitLab workflows) secure on local hardware.
+    *   *Why Phi-3 Mini?* At 3.8B parameters, it has a tiny footprint and runs with sub-second latency on consumer hardware, but its training on heavily filtered datasets gives it reasoning and structured JSON output capabilities that rival standard 7B–8B parameter models.
+*   **Local Embedding (`mxbai-embed-large`)**:
+    *   *Decision:* Runs locally via Ollama to compute vectors. It is a state-of-the-art open-source search embedding model.
+*   **Evaluation Judge (`gpt-4o-mini`)**:
+    *   *Decision:* Why use a cloud model for evaluation? Semantic metrics (Faithfulness, Recall, Relevancy) require a high-capacity, deterministic judge model. Small local models (SLMs) lack the reasoning capabilities and JSON-formatting compliance required to run RAGAS pipelines reliably, leading to parsing failures.
+
+### 3. Handling Context & Token Limit Overflows
+
+During multi-hop evaluation, the judge LLM analyzes large context blocks and outputs complex reasoning paths. To guarantee successful metric calculations, we implemented:
+*   **Output Token Expansion (`max_tokens=8192`)**: Increased Ragas's completion budget from the default `3072` tokens to `8192` to prevent truncated/corrupted JSON responses.
+*   **Context Truncation (`6000` characters)**: Added a sentence-aware truncation helper in the metric calculator. If the retrieved context is excessively large, it caps the context size at ~1,000 words. This retains all necessary facts to calculate faithfulness/recall while keeping API prompt sizes concise and highly performant.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
