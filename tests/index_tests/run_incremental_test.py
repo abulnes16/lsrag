@@ -15,7 +15,7 @@ from datasets import load_dataset
 from src.modules.light_retriever.light_retriever import LightRAGService
 
 def extract_docs(dataset_name, start_idx, end_idx):
-    """Extrae un rango específico de documentos de un dataset en caché local."""
+    """Extract documents for incremental testing"""
     base_data_path = os.path.join(project_root, "data")
     
    
@@ -58,7 +58,7 @@ async def run_incremental_tests():
    
     test_dir = os.path.join(project_root, "data", "lightrag_cache")
     if not os.path.exists(test_dir):
-        print(f"WARNING: No se encontró el índice principal en {test_dir}. Revisa la ruta.")
+        print(f"WARNING: We didn't found the test directory {test_dir}. Check the route.")
         
     
     print(f"Initializing LightRAG in {test_dir} (Index of 889 documents)...")
