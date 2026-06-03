@@ -1,21 +1,35 @@
 [
     {
+        "Batch_Num": 0,
+        "New_Docs": 889,
+        "Total_Docs_In_Graph": 889,
+        "Time_Minutes": 960.10,
+        "Graph_Nodes": 6398,
+        "Graph_Edges": 4281
+    },
+    {
         "Batch_Num": 1,
         "New_Docs": 100,
         "Total_Docs_In_Graph": 989,
-        "Time_Minutes": 39.78349696397781
+        "Time_Minutes": 39.78349696397781,
+        "Graph_Nodes": 6975,
+        "Graph_Edges": 4752
     },
     {
         "Batch_Num": 2,
         "New_Docs": 100,
         "Total_Docs_In_Graph": 1089,
-        "Time_Minutes": 30.56296851634979
+        "Time_Minutes": 30.56296851634979,
+        "Graph_Nodes": 7552,
+        "Graph_Edges": 5223
     },
     {
         "Batch_Num": 3,
         "New_Docs": 100,
         "Total_Docs_In_Graph": 1189,
-        "Time_Minutes": 50.11022471586863
+        "Time_Minutes": 50.11022471586863,
+        "Graph_Nodes": 8129,
+        "Graph_Edges": 5694
     },
     {
         "Batch_Num": 4,
