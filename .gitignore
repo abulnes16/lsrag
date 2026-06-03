@@ -66,3 +66,6 @@ node_modules/
 out/
 build/
 corporate_dataset_cleaning_plan.md
+
+# Testing Files 
+generate_evals.py
