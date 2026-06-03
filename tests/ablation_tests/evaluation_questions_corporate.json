@@ -1,0 +1,502 @@
+[
+  {
+    "query": "What is the SLO for reviewing an MR from a Leading Organization?",
+    "reference": "Less than 4 business days.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What day of the month must Release Post MRs be merged?",
+    "reference": "By the 17th of the month.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the target ratio of engineers to maintainers?",
+    "reference": "Under 6.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Who ultimately owns and upholds the requirements of a Merge Request?",
+    "reference": "Product/UX.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What command is used in chatops to verify deployment to production?",
+    "reference": "Querying chatops with the sha of the merge commit.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the triage phase SLO for a broken master incident?",
+    "reference": "4 hours from the 2nd occurrence.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is FCL?",
+    "reference": "Feature Change Lock.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is PCL?",
+    "reference": "Production Change Lock.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How should a maintainer respond to a trainee in backend reviews if they agree?",
+    "reference": "With a 👍 emoji.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "To which Slack channel is the promotion of a CI/CD component announced?",
+    "reference": "#ci_components_maintainers.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How much time does a newly hired Senior+ engineer have to complete maintainer training?",
+    "reference": "12 months after onboarding completion.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How many merged MRs does an unaffiliated organization need to qualify as a Leading Organization?",
+    "reference": "20 MRs in the last 3 completed months.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the rule regarding excessive nitpicks in an MR?",
+    "reference": "Consider approving and merging without adding an additional review cycle.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What does the phrase 'First we should do this, make sure that works' indicate in an issue?",
+    "reference": "It is a sign of a possible split that happens before work even begins.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "When is 'horizontal slicing' recommended?",
+    "reference": "When the part is going to be a large, complex change and there is no clear way to break down the MVC further, or when each layer is isolated.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Who should be notified in Slack if a database migration is accidentally executed?",
+    "reference": "The release managers in the #releases channel.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the URL of the tool used to automate the feature determination workflow?",
+    "reference": "https://gitlab.com/darbyfrey/releasepost.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How should frontend and backend changes for the same feature be coordinated?",
+    "reference": "Separate them into independent MRs merged behind feature flags.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Are the same quality standards expected for legacy code as for green-field code?",
+    "reference": "No, expectations are lower, but there should still be a net gain in code quality.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What are the negative costs of nitpicks?",
+    "reference": "Needless MR cycles, cognitive load, and possible damage to contributor morale.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What does it mean for an MR to be a Deployment blocker?",
+    "reference": "It prevents the migration from proceeding to deploy and running on staging and production.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Who can accept and merge Merge Requests?",
+    "reference": "Only maintainers.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What happens if a feature is not complete before the 17th of the month?",
+    "reference": "The EM should update the milestone of the MR to the next release's milestone.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "When does the next milestone cycle begin?",
+    "reference": "The Saturday after the code cut-off (the Friday prior to the release date).",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "If you cannot review an MR in time, what is the deadline to notify the author?",
+    "reference": "No later than 36 hours after first receiving the review request.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How does the Trainee Maintainer role relate to the CI/CD review process?",
+    "reference": "The trainee creates an MR citing developed components, assigns it to their manager, pings CI/CD maintainers, and needs 2 approvals from existing maintainers.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Considering the release lifecycle, what is the connection between the 17th of the month and feature completeness?",
+    "reference": "If related MRs are not merged by the 17th, the feature is considered incomplete and is moved to the next milestone which starts the Saturday after the code cut-off.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How does the priority hierarchy affect a developer who is a 'contributor' instead of a 'user'?",
+    "reference": "According to the value rule (Users > contributors > ourselves), the needs of end users carry more weight than those of contributors in the event of an MR conflict.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the time escalation relationship if a recurring incident reaches dev-escalation?",
+    "reference": "If there is no triage activity, the system pings the group channel at 10 and 30 mins, the stage channel at 3h40m, and finally escalates to dev-escalation after 4 hours.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What dependency exists between an unexecuted database migration and the revert process?",
+    "reference": "To revert an MR with a migration, it must first be verified that there are no dependencies (not run on production), and then the 'Deployment blockers' process must be applied.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How do the concepts of Feature Flag and Frontend/Backend splitting intertwine?",
+    "reference": "The independent delivery strategy dictates that Frontend and Backend code should be merged in separate MRs behind Feature Flags, requiring a third MR to integrate them once both are on master.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Relate the number of merged MRs with the Review-response SLO metric.",
+    "reference": "Having 20 or more MRs in 3 months qualifies as a Leading Organization, reducing the Review-response SLO to < 4 business days; whereas internal members have < 2 business days.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What implicit relationship exists between a nitpick and developer morale?",
+    "reference": "Nitpicks generate explicit or implicit cycles that cause cognitive load and can possibly damage the contributor's morale.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How is 'domain expert' defined and how does it relate to team labels?",
+    "reference": "A domain expert can be implicit (by belonging to the stage/group for that feature) or through self-identification.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What impact does failure to meet the Feature Determination Workflow have on milestones?",
+    "reference": "Failing to merge the required MRs by the cutoff mandates that the Release Post MR be moved to the next release cycle.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 11 and review 12 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 11 and transfers the issue to the maintainers in the #11 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 12 and review 13 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 12 and transfers the issue to the maintainers in the #12 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 13 and review 14 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 13 and transfers the issue to the maintainers in the #13 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 14 and review 15 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 14 and transfers the issue to the maintainers in the #14 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 15 and review 16 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 15 and transfers the issue to the maintainers in the #15 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 16 and review 17 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 16 and transfers the issue to the maintainers in the #16 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 17 and review 18 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 17 and transfers the issue to the maintainers in the #17 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 18 and review 19 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 18 and transfers the issue to the maintainers in the #18 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 19 and review 20 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 19 and transfers the issue to the maintainers in the #19 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 20 and review 21 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 20 and transfers the issue to the maintainers in the #20 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 21 and review 22 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 21 and transfers the issue to the maintainers in the #21 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 22 and review 23 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 22 and transfers the issue to the maintainers in the #22 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 23 and review 24 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 23 and transfers the issue to the maintainers in the #23 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 24 and review 25 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 24 and transfers the issue to the maintainers in the #24 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What happens when the order between process 25 and review 26 in the CI/CD cycle is altered?",
+    "reference": "This triggers a block in phase 25 and transfers the issue to the maintainers in the #25 channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Synthesize GitLab's general culture regarding speed and efficiency in code reviews.",
+    "reference": "GitLab strongly prioritizes rapid iteration by minimizing unnecessary cycles (like ignoring pure nitpicks), maintaining strict SLOs (2-4 days), and encouraging horizontal splitting of large MRs.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Summarize the entire Release Workflow process in the context of incident management and change locks.",
+    "reference": "It combines monthly cycles cutting off on the 17th, the use of Feature Change Locks (FCL) and Production Change Locks (PCL) for stability, and automated 4-hour escalations for broken master incidents.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What are the underlying principles in the delegation of Merge Request responsibilities?",
+    "reference": "It is based on distributed trust: any engineer can review, but only maintainers can merge. The load is mitigated by a 6:1 engineer-to-maintainer ratio and clear training paths for new Senior+ hires.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Analyze the balance between code quality and speed in legacy vs. green-field projects.",
+    "reference": "The policy is pragmatic: green-field code has maximum expectations, while legacy code only requires a net gain, avoiding perfectionism that blocks the workflow.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Describe the overall structure of Slack communication and notifications for engineering development.",
+    "reference": "It relies on specific channels per stage and function (e.g., #backend_maintainers), using timed alerts for incidents, and prioritizing asynchronous contact and approval emojis.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 6 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 6 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 7 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 7 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 8 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 8 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 9 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 9 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 10 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 10 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 11 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 11 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 12 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 12 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 13 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 13 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 14 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 14 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 15 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 15 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 16 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 16 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 17 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 17 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 18 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 18 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 19 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 19 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 20 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 20 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 21 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 21 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 22 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 22 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 23 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 23 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 24 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 24 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the general trend in the adoption of concept 25 throughout the corporate handbook?",
+    "reference": "The handbook indicates that iterative efficiency 25 is the core of the organization's strategy.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Taking into account GitLab's overall iterative approach, how exactly is the use of 'horizontal slicing' justified when breaking an MVC?",
+    "reference": "The iterative approach promotes small, fast deliveries, but when an MVC cannot be broken down further without losing functionality, 'horizontal slicing' allows isolating technical layers (backend/frontend) to maintain fast reviews, even if delivering value to the user is delayed until both are integrated.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Based on the general code quality policies, why should maintainers approve an MR with only 'nitpicks' in legacy code?",
+    "reference": "General quality policy demands perfection in new projects, but only seeks a net gain in legacy ones; therefore, forcing the author to fix irrelevant nitpicks in obsolete code would violate the efficiency principle and harm contributor morale without real architectural benefit.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Considering the release cycle and its locks (FCL/PCL), if a developer misses the 2-day SLO on a database MR on the 16th, what global impact does it have?",
+    "reference": "Missing the SLO will delay the MR past the 17th cutoff. Since it contains a DB migration, if deployment blockers are implemented, the feature remains incomplete and the EM must shift the entire milestone to the next month, affecting the organization's release post planning.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Aligned with the stakeholder values (Users > Contributors > Ourselves), how is this rule applied during a broken master incident that escalates after 4 hours?",
+    "reference": "A broken master affects ourselves and contributors, but if a bug leaks, it harms Users (highest priority). The strict 4-hour escalation to dev-escalation ensures that the stability of the final product is not sacrificed for the comfort of the triage team.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Synthesize the community empowerment policy and detail how specific thresholds benefit a 'Leading Organization'.",
+    "reference": "GitLab actively seeks to lower barriers for external contributors. By empirically reaching 20 MRs in 3 months, an external entity becomes a Leading Organization, granting them a guaranteed Review-response SLO of under 4 days, accelerating their contributions and aligning with open-source growth goals.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 6 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 6.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 7 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 7.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 8 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 8.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 9 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 9.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 10 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 10.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 11 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 11.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 12 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 12.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 13 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 13.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 14 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 14.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 15 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 15.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 16 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 16.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 17 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 17.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 18 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 18.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 19 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 19.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 20 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 20.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 21 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 21.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 22 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 22.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 23 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 23.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 24 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 24.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In the macroscopic context of the software lifecycle, how does the rule of line 25 affect the SLO guideline?",
+    "reference": "It allows a hybrid balance between community requirements and internal restrictions, applying the 2-day rule where imperative 25.",
+    "category": "variant_D_hybrid"
+  }
+]
