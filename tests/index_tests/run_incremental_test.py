@@ -90,26 +90,59 @@ async def run_incremental_tests():
 
     await light_retriever.rag.initialize_storages()
     
-    batches = [
-        {"batch_num": 11, "msmarco": (1700, 1790), "hotpotqa": (189, 199)},
-        {"batch_num": 12, "msmarco": (1790, 1880), "hotpotqa": (199, 209)},
-        {"batch_num": 13, "msmarco": (1880, 1970), "hotpotqa": (209, 219)},
-        {"batch_num": 14, "msmarco": (1970, 2060), "hotpotqa": (219, 229)},
-        {"batch_num": 15, "msmarco": (2060, 2150), "hotpotqa": (229, 239)},
-        {"batch_num": 16, "msmarco": (2150, 2240), "hotpotqa": (239, 249)}
-    ]
+    # Generar lotes con tamaños crecientes: 100, 200, 300, 400, 500, 600, 500
+    # para sumar exactamente 2600 docs nuevos y alcanzar los 5089 documentos totales (2489 + 2600 = 5089).
+    sizes = [100, 200, 300, 400, 500, 600, 500]
+    batches = []
     
-    json_output_path = os.path.join(os.path.dirname(__file__), "incremental_test_results.json")
+    current_ms_idx = 2240
+    current_hp_idx = 249
+    
+    for i, size in enumerate(sizes):
+        batch_num = 17 + i
+        ms_size = int(size * 0.9)
+        hp_size = int(size * 0.1)
+        
+        ms_start = current_ms_idx
+        ms_end = current_ms_idx + ms_size
+        hp_start = current_hp_idx
+        hp_end = current_hp_idx + hp_size
+        
+        batches.append({
+            "batch_num": batch_num,
+            "msmarco": (ms_start, ms_end),
+            "hotpotqa": (hp_start, hp_end)
+        })
+        
+        current_ms_idx = ms_end
+        current_hp_idx = hp_end
+    
+    json_output_path = os.path.join(os.path.dirname(__file__), "incremental_tests_results_2.json")
     results_log = []
     
-    # Cargar resultados anteriores si existen para no sobreescribir el archivo
+    # Cargar resultados anteriores. Si no existe, leemos del archivo incremental_test_results.json original
     if os.path.exists(json_output_path):
         try:
             with open(json_output_path, "r", encoding="utf-8") as f:
                 results_log = json.load(f)
-            print(f"Cargados {len(results_log)} resultados previos del archivo JSON.")
+            print(f"Cargados {len(results_log)} resultados previos del archivo JSON nuevo: {json_output_path}")
         except Exception as e:
             print(f"Error al cargar el JSON existente: {e}")
+    else:
+        source_path = os.path.join(os.path.dirname(__file__), "incremental_test_results.json")
+        if os.path.exists(source_path):
+            try:
+                with open(source_path, "r", encoding="utf-8") as f:
+                    results_log = json.load(f)
+                print(f"Inicializado resultados desde el archivo original: {source_path}")
+            except Exception as e:
+                print(f"Error al cargar el archivo de resultados original: {e}")
+
+    # Calcular total de documentos actual a partir del historial cargado
+    current_total_docs = 2489
+    if results_log:
+        # Filtrar si hay elementos con Total_Docs_In_Graph
+        current_total_docs = results_log[-1]["Total_Docs_In_Graph"]
 
     for batch in batches:
         print(f"\n--- Preparing Batch {batch['batch_num']} ---")
@@ -132,12 +165,14 @@ async def run_incremental_tests():
         # Extraer tamaño del grafo actualizado
         nodes_count, edges_count = get_graph_size(test_dir)
         
+        current_total_docs += len(batch_texts)
+        
         print(f"Batch {batch['batch_num']} completed in {elapsed_minutes:.2f} minutes. Graph size: {nodes_count} nodes, {edges_count} edges.")
         
         results_log.append({
             "Batch_Num": batch['batch_num'],
             "New_Docs": len(batch_texts),
-            "Total_Docs_In_Graph": 889 + (batch['batch_num'] * 100),
+            "Total_Docs_In_Graph": current_total_docs,
             "Time_Minutes": elapsed_minutes,
             "Graph_Nodes": nodes_count,
             "Graph_Edges": edges_count
@@ -156,7 +191,7 @@ async def run_incremental_tests():
     except Exception as e:
         print(f"\n[-] Error exporting results in JSON format: {e}")
 
-    print("\nIncremental test completed! Your main index now has 2489 documents ready for ablation tests.")
+    print("\nIncremental test completed! Your main index now has 5089 documents ready for ablation tests.")
 
 if __name__ == "__main__":
     asyncio.run(run_incremental_tests())
