@@ -94,10 +94,22 @@ class RAGMetrics:
         recall = await self.calculate_recall(question, reference, contexts)
         relevancy = await self.calculate_relevancy(question, answer)
         ndcg = await self.calculate_ndcg(reference, contexts)
+        
+        def to_float(val):
+            if val is None:
+                return 0.0
+            if hasattr(val, "value"):
+                return float(val.value) if val.value is not None else 0.0
+            try:
+                return float(val)
+            except Exception:
+                return 0.0
+
         return {
-            "faithfulness": faithfulness,
-            "recall": recall,
-            "relevancy": relevancy,
-            "ndcg": ndcg
+            "faithfulness": to_float(faithfulness),
+            "recall": to_float(recall),
+            "relevancy": to_float(relevancy),
+            "ndcg": to_float(ndcg)
         }
+
         

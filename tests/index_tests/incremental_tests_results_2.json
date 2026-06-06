@@ -3,7 +3,7 @@
         "Batch_Num": 0,
         "New_Docs": 889,
         "Total_Docs_In_Graph": 889,
-        "Time_Minutes": 960.10,
+        "Time_Minutes": 960.1,
         "Graph_Nodes": 6398,
         "Graph_Edges": 4281
     },
@@ -134,5 +134,61 @@
         "Time_Minutes": 49.88618373473485,
         "Graph_Nodes": 15514,
         "Graph_Edges": 11214
+    },
+    {
+        "Batch_Num": 17,
+        "New_Docs": 100,
+        "Total_Docs_In_Graph": 2589,
+        "Time_Minutes": 53.539746499061586,
+        "Graph_Nodes": 16207,
+        "Graph_Edges": 11883
+    },
+    {
+        "Batch_Num": 18,
+        "New_Docs": 200,
+        "Total_Docs_In_Graph": 2789,
+        "Time_Minutes": 73.88698341449101,
+        "Graph_Nodes": 17086,
+        "Graph_Edges": 12682
+    },
+    {
+        "Batch_Num": 19,
+        "New_Docs": 300,
+        "Total_Docs_In_Graph": 3089,
+        "Time_Minutes": 162.23365943431855,
+        "Graph_Nodes": 18630,
+        "Graph_Edges": 13781
+    },
+    {
+        "Batch_Num": 20,
+        "New_Docs": 400,
+        "Total_Docs_In_Graph": 3489,
+        "Time_Minutes": 168.5728578686714,
+        "Graph_Nodes": 20754,
+        "Graph_Edges": 15595
+    },
+    {
+        "Batch_Num": 21,
+        "New_Docs": 500,
+        "Total_Docs_In_Graph": 3989,
+        "Time_Minutes": 232.3085543513298,
+        "Graph_Nodes": 23464,
+        "Graph_Edges": 17865
+    },
+    {
+        "Batch_Num": 22,
+        "New_Docs": 600,
+        "Total_Docs_In_Graph": 4589,
+        "Time_Minutes": 324.5086355686188,
+        "Graph_Nodes": 26537,
+        "Graph_Edges": 20855
+    },
+    {
+        "Batch_Num": 23,
+        "New_Docs": 500,
+        "Total_Docs_In_Graph": 5089,
+        "Time_Minutes": 220.38692596753438,
+        "Graph_Nodes": 29074,
+        "Graph_Edges": 23088
     }
 ]
