@@ -55,10 +55,10 @@ services:
     volumes:
       - ./data:/app/data
     restart: "no"
-    # Este contenedor descargará los datos y finalizará.
+    # This container will download the data and exit.
 
 networks:
   frontend-backend:
     driver: bridge
 
-# Los datos ahora se guardan en el directorio local ./data para que los puedas ver
+# The data is now saved in the local ./data directory so you can view it

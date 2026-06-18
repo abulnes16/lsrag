@@ -3,11 +3,11 @@ FROM node:20-alpine AS base
 FROM base AS builder
 WORKDIR /app
 COPY package.json yarn.lock* ./
-# Omitimos la advertencia de dependencias, instalamos todo
+# Omit dependency warnings, install everything
 RUN yarn install --frozen-lockfile || yarn install
 
 COPY . .
-# En Next.js 15, el build de producción
+# Production build in Next.js 15
 RUN yarn build
 
 FROM base AS runner

@@ -13,9 +13,9 @@ sys.path.append(os.path.join(project_root, 'backend', 'src'))
 from datasets import load_dataset
 from src.modules.light_retriever.light_retriever import LightRAGService
 
-# Batch 4 fueron 9 minutos que ya se corrieron, sumarlos al tiempo actual
+# Batch 4 took 9 minutes and has already run; add this to the current time
 def get_graph_size(test_dir):
-    """Parsea el archivo graphml para contar nodos y relaciones de forma rápida."""
+    """Parses the graphml file to count nodes and relationships quickly."""
     graphml_path = os.path.join(test_dir, "graph_chunk_entity_relation.graphml")
     if not os.path.exists(graphml_path):
         return 0, 0
@@ -27,7 +27,7 @@ def get_graph_size(test_dir):
         edges = len(root.findall('.//gml:edge', ns))
         return nodes, edges
     except Exception as e:
-        print(f"Error al parsear el grafo: {e}")
+        print(f"Error parsing graph: {e}")
         return 0, 0
 
 def extract_docs(dataset_name, start_idx, end_idx):
@@ -90,8 +90,8 @@ async def run_incremental_tests():
 
     await light_retriever.rag.initialize_storages()
     
-    # Generar lotes con tamaños crecientes: 100, 200, 300, 400, 500, 600, 500
-    # para sumar exactamente 2600 docs nuevos y alcanzar los 5089 documentos totales (2489 + 2600 = 5089).
+    # Generate batches with increasing sizes: 100, 200, 300, 400, 500, 600, 500
+    # to add exactly 2600 new docs and reach 5089 total documents (2489 + 2600 = 5089).
     sizes = [100, 200, 300, 400, 500, 600, 500]
     batches = []
     
@@ -120,28 +120,28 @@ async def run_incremental_tests():
     json_output_path = os.path.join(os.path.dirname(__file__), "incremental_tests_results_2.json")
     results_log = []
     
-    # Cargar resultados anteriores. Si no existe, leemos del archivo incremental_test_results.json original
+    # Load previous results. If it does not exist, read from the original incremental_test_results.json file
     if os.path.exists(json_output_path):
         try:
             with open(json_output_path, "r", encoding="utf-8") as f:
                 results_log = json.load(f)
-            print(f"Cargados {len(results_log)} resultados previos del archivo JSON nuevo: {json_output_path}")
+            print(f"Loaded {len(results_log)} previous results from the new JSON file: {json_output_path}")
         except Exception as e:
-            print(f"Error al cargar el JSON existente: {e}")
+            print(f"Error loading existing JSON: {e}")
     else:
         source_path = os.path.join(os.path.dirname(__file__), "incremental_test_results.json")
         if os.path.exists(source_path):
             try:
                 with open(source_path, "r", encoding="utf-8") as f:
                     results_log = json.load(f)
-                print(f"Inicializado resultados desde el archivo original: {source_path}")
+                print(f"Initialized results from the original file: {source_path}")
             except Exception as e:
-                print(f"Error al cargar el archivo de resultados original: {e}")
+                print(f"Error loading the original results file: {e}")
 
-    # Calcular total de documentos actual a partir del historial cargado
+    # Calculate current total documents from the loaded history
     current_total_docs = 2489
     if results_log:
-        # Filtrar si hay elementos con Total_Docs_In_Graph
+        # Filter if there are elements with Total_Docs_In_Graph
         current_total_docs = results_log[-1]["Total_Docs_In_Graph"]
 
     for batch in batches:
@@ -162,7 +162,7 @@ async def run_incremental_tests():
         end_time = time.time()
         elapsed_minutes = (end_time - start_time) / 60
         
-        # Extraer tamaño del grafo actualizado
+        # Extract updated graph size
         nodes_count, edges_count = get_graph_size(test_dir)
         
         current_total_docs += len(batch_texts)

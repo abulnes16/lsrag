@@ -1,17 +1,17 @@
 #!/bin/bash
 
-echo "Esperando a que Ollama (Host) inicie..."
-# Intentar conectar a Ollama en el host varias veces
+echo "Waiting for Ollama (Host) to start..."
+# Attempt to connect to Ollama on the host multiple times
 for i in {1..10}; do
   if curl -s http://host.docker.internal:11434/api/tags > /dev/null; then
-    echo "Ollama en el host está listo!"
+    echo "Ollama on the host is ready!"
     break
   fi
-  echo "Reintentando en 5 segundos..."
+  echo "Retrying in 5 seconds..."
   sleep 5
 done
 
-echo "Ejecutando script de inicialización de datos FlashRAG..."
+echo "Running FlashRAG data initialization script..."
 python init_data.py
 
-echo "Inicialización completada. El contenedor se detendrá."
+echo "Initialization completed. The container will stop."
