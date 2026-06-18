@@ -1,0 +1,502 @@
+[
+  {
+    "query": "Is ginkgo a stimulant?",
+    "reference": "Yes, ginkgo is a natural stimulant.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Define ozone layer depletion?",
+    "reference": "The depletion is caused by the destruction of ozone by CFCs and by other compounds, such as carbon tetrachloride and carbon tetrafluoride.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What id do you need in order to get a delaware license?",
+    "reference": "Photo Identification",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Should teeth contact one another while speaking?",
+    "reference": "Yes",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "The place beyond the pines cast?",
+    "reference": "It is actually the Native American meaning to the word Schenectady",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Ganglion cyst surgery cost?",
+    "reference": "$5,000 to $7,000",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What cells or structures are found in the retina?",
+    "reference": "Photoreceptors are the cells found in the retina. In birds, pecten is structure found in retina.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Keegan allen how old is he?",
+    "reference": "Keegan Allen is 28 years old.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Are are carbs digested?",
+    "reference": "Yes",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How to download multiple nitroflare files from download manager?",
+    "reference": "Drag the URl to drop target window and right click the files to add in queue.  ",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Do chinese speak mandarin?",
+    "reference": "Yes, they speak mandarin.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is engineering stress?",
+    "reference": "It is occasionally used in a looser sense as a synonym of internal force.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What did president lyndon johnson do?",
+    "reference": "He served as a United States Representative from 1937 to 1949 and as a United States Senator from 1949 to 1961.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What causes watermelon stomach?",
+    "reference": "Acute or chronic gastrointestinal blood loss in the elderly. is characterized endoscopically by “watermelon stripes.”",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Nerve neck pain symptoms?",
+    "reference": "Pain that radiates from the neck, muscle weakness, and a burning or prickling sensation.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What are some of the diseases linked to free radical production?",
+    "reference": "Diseases Pala",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Is hemp oil good for skin cancer?",
+    "reference": "Yes",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What does gi joe represent symbolically?",
+    "reference": "The Low GI Symbol is a powerful tool consumers can trust to quickly and reliably make healthy food choices.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What are all organism made up mostly?",
+    "reference": "Cells",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What are elk called in europe?",
+    "reference": "Alces alces; called elk in Europe.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What does gracyn mean?",
+    "reference": "The name Gracyn means very nice, funny individual, or the sexiest of all.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What dose turmeric powder compares to nsad?",
+    "reference": "It is beneficial supplement for people with cystic fibrosis, considered valuable in the treatment of ulcers, taken as a as a dietary supplement, It is used in traditional Ayurvedic medicine, can tame heartburn and an upset stomach.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Deoxygenated blood enters the heart from the body through what structure?",
+    "reference": "Right atrium",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What are the major organs of the muscular system?",
+    "reference": "Cardiac muscles, smooth muscles and skeletal muscles.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What do you do in physical therapy/occupational therapy?",
+    "reference": "Occupational therapists use activities related to work, play, and personal care to help prevent disability, increase independence, and spark development thus enhancing people's lives. Physical therapists provide care for people in a variety of settings, including hospitals, private practices, outpatient clinics, home health agencies, schools, sports and fitness facilities, work settings, and nursing homes.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Effects of prolonged cell phone use?",
+    "reference": "Associated with stress and sleep disturbances for women, whereas high mobile phone use was associated with sleep disturbances and symptoms of depression in men.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "The definition of plate tectonics?",
+    "reference": "It is the theory that Earth's outer shell is divided into several plates that glide over the mantle, the rocky inner layer above the core.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is a courting candle?",
+    "reference": "Courting candles are 'date' timers dating back to colonial times and the early 1800s, used to either lengthen or shorten the time a suitor spent visiting a young lady.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What county is townsend mt in?",
+    "reference": "Broadwater",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What causes constant leg pain?",
+    "reference": "By a low back problem is often accompanied by additional symptoms, such as leg numbness or weakness, or foot pain, and the type of leg pain experienced may vary widely from patient to patient.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Westin doha brunch price?",
+    "reference": "The price at Westin Doha & Spa Friday Bubbalicious Brunch is as follows: 1 Delicious Package with soft beverages at QAR 320 per person. 2 Bubbalicious Package (with grapes, grains and bubbles) at QAR 395 per person. 3 Royalicious Package at QAR 595.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "On average how much are dentures?",
+    "reference": "$1,500 to $20,000",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What file is associated with spytech?",
+    "reference": "Malware file is associated with Spytech.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How was slavery handled in many african cultures?",
+    "reference": "Slavery in America began when the first African slaves were brought to the North American colony of Jamestown, Virginia, in 1619, to aid in the production of such lucrative crops as tobacco.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What county is clayton georgia in?",
+    "reference": "Rabun County",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are rogues powers?",
+    "reference": "She has the ability to absorb the life energy, personality, and memories of every person who she touches.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are snp in dna analysis?",
+    "reference": "It is a DNA sequence variation occurring when a single nucleotide-A, T, C, or G-in the genome (or other shared sequence) differs between members of a species.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Pete ham net worth?",
+    "reference": "Peter William Ham Net Worth is $11 Million.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "During ww2 which countries were part of the allied powers?",
+    "reference": "Britain, France, Russia, and the United States.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Stephanie seymour net worth?",
+    "reference": "$15 Million",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Walt disney quote positive thinking?",
+    "reference": "If you can dream it, you can do it. The difference between winning and losing, is most often, not quitting.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is a reflex verb?",
+    "reference": "A verb that has an object which is the same as the subject of the verb.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is  severe centrilobular emphysema?",
+    "reference": "It can be associated with fibrosis, as well known to pathologists who work on COPD but is largely unknown outside this group.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Kamikaze how many ships sunk?",
+    "reference": "120 US ships were sunk",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Most popular creole dish?",
+    "reference": "accras, different types of colombo (curried dishes); blaff, calalloo, an herb porrige, Sauce au chien.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Mount vernon, ny is what county?",
+    "reference": "Westchester County",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Coffee pods expiration date?",
+    "reference": "2 year",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What county is hamburg mn?",
+    "reference": "Carver",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Tesla model s australia price?",
+    "reference": "around $200,000",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "Average time to get to border patrol academy?",
+    "reference": "58 days and if you are not proficient in Spanish, the additional 8 weeks of Spanish Language Class.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "New Faces of 1952 is a musical revue with songs and comedy skits, it helped jump start the career of which young performer, and American actress?",
+    "reference": "Carol Lawrence",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Lee Il-hyung's first feature film was released by which company ?",
+    "reference": "Showbox",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Are Manhattan West and Singer Building both projects in New York?",
+    "reference": "yes",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What year was the series published that recounts the adventures of Anne Shirley and published by Scholastic Press?",
+    "reference": "1908",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "When was the  Prime Minister of India after which V. K. Krishna Menon was regarded as the second most powerful man in India born?",
+    "reference": "14 November 1889",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "The Southern Railway runs from Vienna to Graz and the border with Slovenia at Spielfeld via the first mountain railway built in Europe to use what kind of track?",
+    "reference": "standard gauge track",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "The man that had a single titled \"That's My Pa\" played what character in the film \"High Noon\"?",
+    "reference": "Ben Miller",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "The Colombian airline that has been the national airline and flag carrier of Colombia since 1919 is wholly owned by a company headquartered in what country?",
+    "reference": "Brazil",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is a resort and National Historic Landmark in Palm Beach, Florida, built from 1924 to 1927 by cereal-company heiress and socialite Marjorie Merriweather Post, that has Magazines available for free to members of the resort?",
+    "reference": "Mar-a-Lago",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Ghostbusters is a song written and recorded by Ray Parker Jr. as the theme song for a movie starring a Canadian-American actor who was an original member of the Not Ready for Prime Time Players on what show?",
+    "reference": "Saturday Night Live",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "The John Messer Barn is a historic structure within the Great Smoky Mountains National Park in Sevier County, Tennessee, this barn is a different Messer Barn in which valley, in the Great Smoky Mountains of North Carolina, located in the Southeastern United States?",
+    "reference": "Cataloochee",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the historical name of the acid that dissolves phenazine?",
+    "reference": "oil of vitriol",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Which genus has more species, Fir or Chelone?",
+    "reference": "Firs",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What retailer is the second-largest in the United States and has a commercial featuring the American artist who was 1st runner-up in the 2005 USA Weekend Magazine's songwriting competition?",
+    "reference": "Target Corporation",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Who was the husband of the first olympic gymnast to be awarded a perfect score of 10.0?",
+    "reference": "Bart Conner",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Who produced the movie that \"Puss in Boots: The Three Diablos\" is the sequel of?",
+    "reference": "DreamWorks Animation",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Who's the Hungarian-born US film director renowned for adapting Stephen King novellas to the screen, including The Mist and The Green Mile?",
+    "reference": "Frank Darabont",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How many test centuries did the grandfather of Fabian Cowdrey make for England ?",
+    "reference": "22",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Which faith is designated to the University of Providence, private university accredited by the NW association of Schools and Colleges and located in a third largest city in Montana after being passed by Missoula?",
+    "reference": "Roman Catholic",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Donington School F.C. was an English football club, based in which large village and civil parish in the South Holland district of Lincolnshire, England?",
+    "reference": "Donington, Lincolnshire",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "The Golden Globe Award winner for best actor from \"Roseanne\" starred along what actress in Gigantic?",
+    "reference": "Zooey Deschanel",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Which member of the band Bad Seeds was older, Anita Lane or Nick Cave?",
+    "reference": "Nick Cave",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "The Pantanal is a mid-size pickup truck made by the Brazilian off-road vehicle manufacturer Troller Veículos Especiais S/A, a manufacturer of off-road vehicles in which country, from 2006 to 2008?",
+    "reference": "Brazil",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Were both Joseph Roth and Cid Corman authors?",
+    "reference": "yes",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Teri W. Odom is a member of a scientific journal first published in 2007 by who?",
+    "reference": "the American Chemical Society",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "Spaceballs is a 1987 American comic science fiction film co-written, produced and directed by Mel Brooks, the film also features which American actor, businessman, and animal welfare advocate, best known for his role as patriarch Tom Bradford on the ABC television comedy-drama \"Eight Is Enough\"?",
+    "reference": "Richard Vincent Van Patten",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Dixit Dominus is a psalm setting by who, which was a German, later British, baroque composer who spent the bulk of his career in London, becoming well known for his operas, oratorios, anthems, and organ concertos?",
+    "reference": "George Frideric Handel",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "American politician Joe Heck ran unsuccessfully against Democrat Catherine Cortez Masto, a woman who previously served as the 32nd Attorney General of where?",
+    "reference": "Nevada",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Rob Jenkins is an Australian actor, which of his movies, was a 2014 science fiction thriller film?",
+    "reference": "Predestination",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What magazine an American monthly food and lifestyle magazine founded in 1987, Cooking Light or Hot Rod?",
+    "reference": "Cooking Light",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "The NBC-affiliated television station, owned by an American telecommunications company whose founder is Julian Sinclair Smith, called WJAR is more commonly known as what?",
+    "reference": "NBC 10",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Which was halted by a natural disaster, Camlaren Mine or Barton Mine?",
+    "reference": "Barton Mine",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Which organization presents the award in which Chris Noonan was nominated for his work in \"Babe?\"",
+    "reference": "Academy of Motion Picture Arts and Sciences",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What male actor starred in The Messenger?",
+    "reference": "Robert Sheehan",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "At which stadium does the team, for which Baltimore's Marching Ravens is the official marching band, play its home games?",
+    "reference": "M&T Bank Stadium",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "The Pineground Bridge formerly carried Depot Road over the Suncook River into a town with a population of what?",
+    "reference": "2,523",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Who directed a 2016 musical filmed in Howth?",
+    "reference": "John Carney",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Barbara Jordan and Mark Knowles are both what?",
+    "reference": "former tennis player",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What year was the thesis supervisor of Jocelyn Bell Burnell awarded the Eddington Medal?",
+    "reference": "1969",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Are the New Orleans Outfall Canals the same length as the Augusta Canal?",
+    "reference": "yes",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "750 7th Avenue and 101 Park Avenue, are located in which city?",
+    "reference": "New York City",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "\"Apocalypic\" is a song sung by Lizzy Hale from which group?",
+    "reference": "Halestorm",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "The American Aircraft Penetrator was modified from a helicopter produced by what nation's military?",
+    "reference": "United States",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "The Sia song \"Never Give Up\" is from the soundtrack of a film that is based on what non-fiction book?",
+    "reference": "\"A Long Way Home\"",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "The Thoen Stone is on display at a museum in what county?",
+    "reference": "Lawrence County",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Who released the album with a single which originally reached number 60 on the UK Singles Chart in 1997?",
+    "reference": "Wiiija",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Do filmmakers Chris Carter and Theo van Gogh share the same nationality?",
+    "reference": "no",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "Rags Ragland died how many years after starring in Meet the People?",
+    "reference": "II",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "When was Fannie Lee Chaney's son born?",
+    "reference": "May 30, 1943",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What county named for a hero in the French and Indian War and a general in the American Revolutionary War is represented by Assemblyman Kevin Byrne?",
+    "reference": "Putnam County",
+    "category": "variant_D_hybrid"
+  }
+]

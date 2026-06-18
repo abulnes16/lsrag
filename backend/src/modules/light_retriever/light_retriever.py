@@ -1,61 +1,77 @@
 import os
 import asyncio
-from flashrag.retriever import BaseRetriever
-from lightrag import LightRAG
+
+from lightrag import LightRAG, QueryParam
 from lightrag.llm.ollama import ollama_model_complete, ollama_embed
 from lightrag.utils import EmbeddingFunc
 from typing import List, Dict
+from utils import get_lightrag_working_dir
 
 
-class LightRetriever(BaseRetriever):
+class LightRAGService:
     """
-    Custom Retriever bridging FlashRAG and LightRAG using local Ollama models.
+    Standalone Service for LightRAG using local Ollama models.
     """
-    def __init__(self, config):
-        super().__init__(config)
-        
-        base_data_path = os.getenv("DATA_PATH", "./data")
-        self.working_dir = config.get("lightrag_working_dir", os.path.join(base_data_path, "lightrag_cache"))
+    def __init__(self, config: dict):
+        self.working_dir = config.get("working_dir", get_lightrag_working_dir())
         
         if not os.path.exists(self.working_dir):
             os.makedirs(self.working_dir)
             
-        # Initialize LightRAG natively with Ollama
         self.rag = LightRAG(
             working_dir=self.working_dir,
             llm_model_func=ollama_model_complete,
-            # Use phi3:mini model as SLM to test the results
-            llm_model_name='phi3:mini', 
-            # Define embedding function
+            llm_model_name=config.get("llm_model", "phi3:mini"), 
             embedding_func=EmbeddingFunc(
-                embedding_dim=1024,  
+                embedding_dim=config.get("embed_dim", 1024),  
                 max_token_size=8192,
-                func=lambda texts: ollama_embedding(texts, embed_model="mxbai-embed-large")
+                func=lambda texts: ollama_embed(texts, embed_model=config.get("embed_model", "mxbai-embed-large"))
             ),
-            chunk_token_size=600,
-            chunk_overlap_token_size=100
+            chunk_token_size=config.get("chunk_size", 300),
+            chunk_overlap_token_size=config.get("chunk_overlap", 50),
+            # CPU/Local GPU Optimization
+            llm_model_max_async=config.get("max_async", 1),
+            embedding_func_max_async=config.get("max_async", 1) * 2,
+            addon_params={"timeout": config.get("timeout", 1200)} 
         )
         
-        # Async initialization for local storage endpoints
-        asyncio.run(self.rag.initialize_storages())
-        
-        self.query_mode = config.get("lightrag_mode", "hybrid")
+        self.query_mode = config.get("lightrag_mode", "mix")
 
-    def batch_search(self, query_list: List[str], num: int = 5) -> List[List[Dict]]:
+    async def batch_search(self, query_list: List[str], num: int = 5, mode: str = None) -> List[List[Dict]]:
         batch_results = []
         for query in query_list:
-            lightrag_output = self.rag.query(
+            # Use aquery (async) instead of query (sync)
+            current_mode = mode or self.query_mode
+            lightrag_output = await self.rag.aquery(
                 query, 
-                param=QueryParam(mode=self.query_mode)
+                param=QueryParam(mode=current_mode, top_k=num, chunk_top_k=num)
             )
             
+            # Query context structured results using aquery_llm
+            contexts_res = await self.rag.aquery_llm(
+                query, 
+                param=QueryParam(mode=current_mode, only_need_context=True, top_k=num, chunk_top_k=num)
+            )
+            
+            # Extract individual text chunks if available
+            chunks = contexts_res.get("data", {}).get("chunks", [])
+            contexts = [c["content"] for c in chunks if "content" in c]
+            
+            # Fallback to the full context string if no chunks are parsed
+            if not contexts:
+                content = contexts_res.get("llm_response", {}).get("content", "")
+                if content:
+                    contexts = [content]
+            
             batch_results.append([{
-                "id": f"ollama_phi3_{self.query_mode}",
+                "id": f"ollama_phi3mini_{self.query_mode}",
                 "contents": lightrag_output,
+                "contexts": contexts,
                 "score": 1.0
             }])
             
         return batch_results
 
-    def search(self, query: str, num: int = 5) -> List[Dict]:
-        return self.batch_search([query], num)[0]
+    async def search(self, query: str, num: int = 5, mode: str = None) -> List[Dict]:
+        results = await self.batch_search([query], num, mode=mode)
+        return results[0]

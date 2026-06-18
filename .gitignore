@@ -58,9 +58,14 @@ docker-compose.override.yml
 # Datos (en caso de pruebas locales con volúmenes bind)
 backend/data/
 data-provider/data/
+data/
 
 # Frontend (Next.js usa su propio .gitignore, pero añadimos los base por seguridad)
 node_modules/
 .next/
 out/
 build/
+corporate_dataset_cleaning_plan.md
+
+# Testing Files 
+generate_evals.py

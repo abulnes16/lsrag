@@ -1,0 +1,502 @@
+[
+  {
+    "query": "What is the review-response SLO for GitLab team members?",
+    "reference": "Review-response SLO < 2 business days.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "When must release post MRs be merged?",
+    "reference": "By the 17th of the month.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the purpose of the `pipeline::expedited` label?",
+    "reference": "To skip some non-essential jobs to speed up MR pipelines.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Which channel should you inform if the master is broken?",
+    "reference": "#master-broken.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the URL for the GitLab Flow blog post?",
+    "reference": "https://about.gitlab.com/blog/2023/07/27/gitlab-flow-duo/",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What severity labels indicate a feature break?",
+    "reference": "~severity::1 or ~severity::2.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is a broken master?",
+    "reference": "An event where a pipeline in master is failing.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the target SLO for resolving a broken master incident?",
+    "reference": "4 hours from assignment to DRI until incident is resolved.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Where can you find the GitLab Code Review Guidelines?",
+    "reference": "https://docs.gitlab.com/ee/development/code_review.html.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What command do you use to assign yourself to an incident?",
+    "reference": "/assign me.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What type of changes should be avoided when reverting merge requests?",
+    "reference": "Non-functional changes that do not remove existing capabilities.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Which Slack channel should be used for broken master notifications?",
+    "reference": "#master-broken.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What does the `master:broken` label indicate?",
+    "reference": "That a merge request fixes a broken master.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the maximum time for triage on a broken master incident?",
+    "reference": "4 hours from the 2nd occurrence.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What type of issues are prioritized for the development team?",
+    "reference": "High severity (severity::1/priority::1) security issues.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the maximum timeframe for a newly hired senior engineer to become a maintainer?",
+    "reference": "12 months after onboarding completion.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the command to label an incident with a flaky test?",
+    "reference": "/label ~\"master-broken::flaky-test\".",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the URL for the Sentry error reporting tool?",
+    "reference": "https://sentry.gitlab.net.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What type of issues are included in the Release Post?",
+    "reference": "Bug fixes and performance improvements.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What action should be taken if a security commit is accidentally pushed?",
+    "reference": "Delete the relevant branch ASAP.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What is the URL for the GitLab incident review process?",
+    "reference": "/handbook/engineering/infrastructure-platforms/incident-review/.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "How long should maintainers aim to complete a review?",
+    "reference": "Within the Review-response SLO timeframe.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What does the `workflow::in dev` label indicate?",
+    "reference": "A developer is developing an issue.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "Which group is responsible for managing security issues?",
+    "reference": "The security team.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What tool is used for automating the release post MR process?",
+    "reference": "https://gitlab.com/darbyfrey/releasepost.",
+    "category": "variant_A_factual"
+  },
+  {
+    "query": "What are the steps a maintainer must follow to update the CODEOWNERS file in a GitLab project?",
+    "reference": "To update the Code Owner(s) of the CODEOWNERS file, you can either update the membership of a group that already has the ability to approve CODEOWNERS changes via the standard access request process, or open a merge request to update the relevant lines. An existing Code Owner will have to approve the merge request.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the review-response Service-level Objective (SLO) for merge requests from GitLab team members?",
+    "reference": "The review-response SLO for merge requests from GitLab team members is less than 2 business days.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What criteria must be met for a merge request to be merged during a broken master?",
+    "reference": "Merging during a broken master can only be done for merge requests that need to be deployed to GitLab.com to alleviate an ongoing production incident or merge requests that fix broken master issues.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How should a triage DRI handle a broken master incident if they believe there is an easy resolution?",
+    "reference": "The triage DRI can create a merge request to revert a particular merge request or make a quick fix if they believe it can be resolved easily. They should also notify the resolution DRI about the fix.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the process for determining if a feature will be included in a milestone release?",
+    "reference": "The process begins by finding the relevant issue linked in the merge request yaml file. The engineering manager reviews related MRs for that issue and checks if those MRs have been merged and deployed in production. If all are complete, the feature is considered complete; if not, the milestone is updated accordingly.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are the responsibilities of the resolution DRI when fixing a broken master incident?",
+    "reference": "The resolution DRI must prioritize resolving recurring broken master incidents over new work, address all failures in the pipeline, apply the necessary labels, and communicate when the fix has been merged.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What should a reviewer do if they find themselves unable to review a merge request within the review-response SLO?",
+    "reference": "The reviewer should inform the merge request author as soon as possible, ideally within 36 hours, and help them find another reviewer or maintainer who can assist.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the role of the triage DRI regarding broken master incidents?",
+    "reference": "The triage DRI is responsible for monitoring ongoing incidents, identifying issues, communicating status, and ensuring that all necessary actions are taken to resolve the incident promptly.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How should an engineer handle a security issue they discover in GitLab?",
+    "reference": "They should create a confidential issue mentioning the relevant security and engineering managers and post about it in the #security channel.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the expected turnaround time for maintainers to approve merge requests after a request?",
+    "reference": "Maintainers are expected to approve merge requests within a review-response SLO of less than 2 business days for GitLab team members and less than 4 business days for authors of Leading Organizations.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are the steps involved in the Manual Process for determining feature inclusion in a release post?",
+    "reference": "First, find the relevant issue linked in the merge request yaml file. Second, check the related MRs assigned to the milestone. Finally, update the release post MR based on the feature's completion status.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What should maintainers do when they become aware of a merge request that is not going to meet quality benchmarks?",
+    "reference": "They should aim to let the author absorb the learning experience and foster the right response of being inspired to try again with a better merge request.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the protocol for merging a merge request that includes a code change that is part of a broken master?",
+    "reference": "The merge request can be merged only if it is urgent, such as fixing a production incident or addressing broken master issues. The details must be communicated clearly in the request.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the guideline for engaging with reviewers and maintainers about readiness for maintainership?",
+    "reference": "Reviewers should check in regularly with their manager or mentor to discuss progress and seek feedback on their reviews to prepare for maintainership.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What steps should a developer take if they find themselves unable to address a broken master issue immediately?",
+    "reference": "They should refer to the broken master escalation steps to request help from the current engineer on-call as early as needed.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How should maintainers manage feedback on a merge request when they receive negative feedback?",
+    "reference": "If negative feedback is received, the manager or mentor should review the concerns and decide whether to close the merge request while providing constructive feedback privately to the reviewer.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the recommended approach for triaging infradev issues?",
+    "reference": "Infradev issues are nominated by adding the infradev label, then regularly reviewed by development directors and managers to ensure timely triaging and prioritization.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What should you do if you identify a merge request with many nitpicks during review?",
+    "reference": "Consider approving and merging the merge request without additional cycles if the comments are primarily nitpicks, and leave feedback for future improvements.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are the responsibilities of maintainers when they are assigned to review a merge request?",
+    "reference": "They must ensure the quality of the codebase, provide timely reviews, and communicate any concerns to the merge request author constructively.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are the expectations for maintainers regarding their capacity to handle merge requests?",
+    "reference": "Maintainers should adjust their available capacity to accommodate their broader responsibilities in reviewing and accepting merge requests.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What should an engineer do if they suspect that a merge request introduces fragility or dependencies?",
+    "reference": "They should raise concerns about the potential fragility or dependencies during the review process and collaborate with the merge author to find a solution.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "How should MRs related to security issues be labeled?",
+    "reference": "Security issues should be labeled with severity and priority labels that correspond to the nature of the security concern.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the process for a developer to escalate issues related to broken master during weekends and holidays?",
+    "reference": "Broken master incidents must be manually escalated to #dev-escalation on weekends and holidays if necessary, as the service level objective can extend to the next working day.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the process for a triage DRI when they identify a broken master incident that is due to a flaky test?",
+    "reference": "If a broken master is identified due to a flaky test, the triage DRI must quarantine the failing test to restore pipeline stability within 30 minutes. They should also document the issue, create a failure issue if not already existing, and label it appropriately with `~master-broken::flaky-test` and `failure::flaky-test`, while ensuring to track the incident and communicate any necessary follow-up actions to the relevant teams.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What are the criteria for merging a merge request during a broken master, and what steps should be taken to request such a merge?",
+    "reference": "Merging during a broken master is only allowed for merge requests that need to be deployed to GitLab.com to alleviate an ongoing production incident or those that fix broken master issues. To request a merge, the developer must ensure that the latest pipeline completed less than 2 hours ago, that all latest pipeline failures also happen on master, and that there is a corresponding non-resolved broken master incident. They should post in the relevant Slack channel explaining why the merge request is urgent and indicate it is being merged during a broken master.",
+    "category": "variant_B_local"
+  },
+  {
+    "query": "What is the significance of iteration in GitLab's development process and how does it influence decision-making?",
+    "reference": "Iteration is a core value at GitLab, emphasizing the importance of delivering changes in smaller, manageable increments. It facilitates rapid feedback cycles between engineers and product management, allowing for more efficient problem-solving and adaptability in the development process.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How do GitLab's values prioritize user experience when evaluating code changes?",
+    "reference": "GitLab's values dictate that in cases of competing priorities, user experience is prioritized above contributors' and reviewers' preferences. This ensures that all changes are made with the end-user's needs in mind, fostering a focus on delivering a robust and loveable product.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What role does the concept of 'short toes' play in GitLab's culture and decision-making?",
+    "reference": "The 'short toes' value encourages employees to take ownership of their work without fear of blame. This fosters a culture where team members can proactively address issues, propose changes, and collaborate openly, enhancing overall team dynamics and responsiveness.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab balance speed and quality in its code review process?",
+    "reference": "GitLab emphasizes a balance between speed and quality by implementing strict review-response SLAs while also encouraging thorough evaluations of merge requests. Reviewers are trained to prioritize essential quality metrics while maintaining an iterative approach to keep the development momentum.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "In what ways does GitLab's workflow ensure accountability and clear communication among team members?",
+    "reference": "Accountability is reinforced through designated roles such as DRIs (Directly Responsible Individuals) and clear communication channels, including Slack and the use of labels for issues and merge requests. This structure helps ensure that all team members are aware of their responsibilities and can efficiently track progress.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What principles guide the process of determining which features are included in a release?",
+    "reference": "The process for feature inclusion in releases at GitLab involves assessing the completion of related MRs, verifying deployment status in production, and ensuring that criteria outlined in the release feature determination workflow are met, thus maintaining high standards for release quality.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab's approach to technical debt impact its software development practices?",
+    "reference": "GitLab actively manages technical debt by prioritizing it alongside new feature development. The aim is to prevent technical debt from accumulating faster than the codebase itself, ensuring long-term maintainability and quality of the software.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the importance of mentorship in the reviewer and maintainer roles at GitLab?",
+    "reference": "Mentorship is crucial at GitLab as it helps new reviewers and maintainers develop their skills and confidence in code review processes. The mentorship program fosters collaboration, knowledge sharing, and ultimately leads to a more robust review culture that supports continuous improvement.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab ensure that security considerations are integrated into the development lifecycle?",
+    "reference": "Security is embedded into GitLab's development lifecycle through proactive measures such as requiring security reviews for merge requests, regular training for developers on secure coding practices, and a collaborative approach with the Security Team to address vulnerabilities early.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What strategies does GitLab employ to promote effective collaboration across teams?",
+    "reference": "GitLab promotes collaboration through structured workflows, regular communication in designated Slack channels, and cross-functional teams that include product managers, engineers, and designers, fostering an environment where diverse perspectives contribute to project success.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the significance of maintaining a balance between horizontal and vertical slicing in merge requests?",
+    "reference": "Balancing horizontal and vertical slicing in merge requests allows GitLab teams to manage complexity effectively. Horizontal slicing can prevent context loss but may lead to disjointed reviews, while vertical slicing maintains context but can complicate changes. Both approaches must be considered based on project requirements.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab address recurring broken master incidents and what processes are in place for resolution?",
+    "reference": "GitLab addresses recurring broken master incidents through a defined escalation process, which includes triaging incidents within a set timeframe and assigning a DRI for resolution. This ensures a swift response to maintain pipeline stability and overall development efficiency.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What are the expectations for maintainers in terms of workload and responsibilities at GitLab?",
+    "reference": "Maintainers at GitLab are expected to handle a balanced workload that includes reviewing merge requests, mentoring junior engineers, and ensuring code quality. They must communicate effectively about their capacity to manage these responsibilities to avoid burnout.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab’s culture around feedback contribute to its overall engineering effectiveness?",
+    "reference": "GitLab fosters a culture of constructive feedback, emphasizing kindness, humility, and collaboration in code reviews. This approach encourages continuous improvement and learning among team members, ultimately enhancing the quality of the codebase and the team's performance.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "In what ways does GitLab define and prioritize the concept of 'merge profitability'?",
+    "reference": "Merge profitability at GitLab refers to the net benefits a merge request brings to the project. It weighs user experience, maintainability, reliability, and the overall impact on the codebase, guiding decision-making during reviews to ensure that only beneficial changes are approved.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What processes does GitLab have in place to handle contributions from the wider community?",
+    "reference": "GitLab has established processes to handle community contributions, including labeling community merge requests, ensuring relevant product managers are notified, and maintaining a welcoming environment for contributors through supportive feedback and guidance.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab ensure that its code review guidelines are effectively communicated and followed?",
+    "reference": "GitLab ensures code review guidelines are communicated through documentation, training sessions for new contributors, and collaborative discussions during reviews. Regular check-ins and mentorship also promote adherence to these guidelines across the engineering team.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What is the role of the 'code ownership' concept in GitLab's review process?",
+    "reference": "The 'code ownership' concept in GitLab's review process assigns specific reviewers to code components, ensuring that those with the most relevant expertise evaluate changes effectively. This promotes accountability and enhances the quality of code reviews.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab handle the onboarding of new maintainers to foster their development?",
+    "reference": "GitLab handles the onboarding of new maintainers through a structured process that includes mentorship, participation in code reviews, and regular feedback sessions. This approach ensures that new maintainers gain the necessary skills and confidence to perform their roles effectively.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab's iterative approach to development influence its overall product quality and team collaboration?",
+    "reference": "GitLab's iterative approach emphasizes breaking down work into smaller, manageable pieces, allowing teams to receive feedback early and often. This method not only enhances product quality by ensuring that features are developed with user feedback in mind, but it also fosters collaboration among team members. Engineers are encouraged to communicate with Product Management to refine feature scopes and ensure that the final output is both functional and user-friendly.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What are the core values that guide GitLab's code review process and how do they impact the maintainability of the codebase?",
+    "reference": "GitLab's code review process is guided by values such as prioritizing user experience, maintaining code quality, and fostering a respectful review environment. Reviewers are encouraged to avoid nitpicking and focus on significant trade-offs that affect maintainability. This approach helps maintain a high-quality codebase while empowering contributors, ensuring that the software remains robust and adaptable to future changes.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "In what ways do GitLab's principles regarding technical debt and deferred UX influence the development lifecycle?",
+    "reference": "GitLab prioritizes addressing technical debt and deferred UX to prevent them from accumulating faster than the codebase can manage. By incorporating these principles into the development lifecycle, GitLab ensures that engineers are aware of the long-term impacts of their work, focusing on delivering high-quality features without compromising future maintainability or user experience.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab balance speed and quality in its merge request process while ensuring accountability among its developers?",
+    "reference": "GitLab balances speed and quality through a structured merge request process that mandates code reviews and emphasizes timely feedback. By setting clear review-response SLAs and encouraging collaboration, GitLab ensures that developers remain accountable for their contributions while still maintaining the velocity needed to meet release timelines, thus fostering an efficient development environment.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "What strategies does GitLab employ to integrate security considerations into its software development practices?",
+    "reference": "GitLab integrates security into its software development by emphasizing security as a shared responsibility among all team members. This includes proactive security reviews, adherence to secure coding guidelines, and collaboration with the Security Team throughout the development lifecycle, ensuring that potential vulnerabilities are identified and mitigated early in the process.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does GitLab's approach to mentorship and reviewer training contribute to its overall engineering effectiveness?",
+    "reference": "GitLab's mentorship and reviewer training programs are designed to develop the skills of new maintainers and reviewers, fostering a culture of continuous learning and improvement. By pairing experienced maintainers with trainees, GitLab enhances the quality of code reviews, promotes knowledge sharing, and helps new contributors gain confidence in their abilities, ultimately leading to a more effective engineering team.",
+    "category": "variant_C_global"
+  },
+  {
+    "query": "How does the process of reverting a merge request interact with the responsibilities of the resolution DRI during a broken master incident?",
+    "reference": "The process of reverting a merge request is intended to restore functionality when something breaks, which is a priority for the resolution DRI during a broken master incident. The resolution DRI must prioritize fixing the broken master, which could involve reverting the merge request that caused the breakage, thereby directly linking the two processes.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What role does the review-response SLO play in the overall development process, particularly in relation to the milestone deadlines?",
+    "reference": "The review-response SLO ensures that merge requests are reviewed promptly (within 2 business days for GitLab team members) to prevent bottlenecks in development. This is crucial as milestone deadlines require timely merging of completed MRs, ensuring that features are ready before the code cut-off date.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How do the principles of iterative development affect the code review process at GitLab, particularly regarding the creation of smaller merge requests?",
+    "reference": "Iterative development encourages creating smaller merge requests to facilitate easier reviews. This aligns with the code review process where reviewers are expected to provide timely feedback, allowing for quicker iterations and maintaining velocity in development.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What is the significance of the 'master:broken' label in the context of expediting merge requests, and how does it relate to the resolution of a broken master?",
+    "reference": "The 'master:broken' label is applied to merge requests that fix issues causing a broken master, allowing them to bypass non-essential jobs in the CI pipeline. This expedites the resolution process, which is crucial when addressing incidents affecting the stability of the master branch.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How does the process of triaging broken master incidents connect to the responsibilities of maintainers in code reviews?",
+    "reference": "During the triage of broken master incidents, maintainers are responsible for identifying the root causes of failures in the CI pipeline. Their expertise in code reviews helps to quickly ascertain whether recent changes contributed to the issue, linking their review responsibilities with incident management.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What steps should be taken when a merge request is identified as containing a regression, and how does this relate to the release process?",
+    "reference": "When a merge request is identified as containing a regression, it should be labeled with '~regression' and addressed promptly. This is directly tied to the release process, as regressions need to be resolved before the final release to ensure a stable product.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In what ways do the values of reviewers influence the handling of merge requests from community contributors compared to internal team members?",
+    "reference": "The values of reviewers emphasize prioritizing user experience and maintainability. This influences how merge requests from community contributors are handled, as reviewers are encouraged to be more supportive and guide these contributors, whereas internal MRs might be held to stricter standards due to familiarity with the codebase.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How do the responsibilities of a triage DRI during a broken master incident relate to the review turnaround expectations set for maintainers?",
+    "reference": "The triage DRI's responsibility is to quickly assess and resolve issues in the CI pipeline affecting master. This expectation parallels the review turnaround expectations for maintainers, who must also act swiftly to provide feedback on MRs, ensuring that both roles prioritize speed to maintain productivity.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What is the connection between the requirements for maintainership and the need for effective communication during code reviews?",
+    "reference": "The requirements for maintainership include being familiar with the codebase and being able to effectively review MRs. This necessitates strong communication skills during code reviews to provide constructive feedback and ensure that the quality of the code is upheld, which is essential for maintaining a healthy codebase.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How does the concept of 'short toes' influence the decision-making process when reverting a merge request?",
+    "reference": "The principle of 'short toes' encourages a culture of openness and accountability, allowing any team member to propose reverting a merge request without fear of blame. This principle supports a collaborative environment where the focus is on resolving issues rather than assigning blame, which is crucial during the revert decision-making process.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What is the impact of the automated release post tool on the manual process of determining feature readiness for a milestone?",
+    "reference": "The automated release post tool streamlines the process of determining if features are ready for inclusion in a milestone by checking the status of related MRs. This reduces the manual workload for engineering managers, allowing them to focus on assessing the completion of features more efficiently.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How do the guidelines for maintaining a high standard of code quality relate to the iterative development approach at GitLab?",
+    "reference": "Maintaining a high standard of code quality is essential in an iterative development approach, as each iteration should build on the previous one without introducing technical debt. This ensures that changes remain manageable and that future iterations can be developed without complications arising from poor quality code.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What processes are in place to ensure that broken master incidents are escalated in a timely manner, and how does this relate to review response SLOs?",
+    "reference": "The escalation process for broken master incidents includes a 4-hour SLO for triage and resolution. This is similar to the review response SLOs, which require prompt feedback, emphasizing the importance of quick action to maintain overall system stability and performance.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How does the definition of a regression affect the prioritization of issues in the release planning process?",
+    "reference": "A regression, defined as a previously working feature that no longer functions, is prioritized highly in the release planning process. This is because addressing regressions is crucial to maintaining user satisfaction and product reliability, necessitating swift action before release.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How are the concepts of vertical and horizontal slicing applied in the context of code reviews for complex merge requests?",
+    "reference": "Vertical slicing involves breaking down changes into smaller, contextually related pieces that are easier to review together, while horizontal slicing separates changes by layers of the stack. In code reviews, vertical slicing is often preferred for complex merge requests to provide a more holistic view of the changes and their interactions.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What role does the concept of 'failure::flaky-test' play in the overall strategy for managing broken master incidents?",
+    "reference": "The 'failure::flaky-test' label is used to identify tests that intermittently fail, which can contribute to broken master incidents. Managing these flaky tests is part of the overall strategy to maintain pipeline stability, as resolving or quarantining them can help prevent future occurrences of broken master.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How does the expectations for maintainership relate to the broader company values of collaboration and efficiency?",
+    "reference": "Expectations for maintainership include not only technical expertise but also a commitment to collaboration and efficiency. Maintainers are expected to work with other team members to streamline the code review process while ensuring high-quality contributions, reflecting GitLab's values of collaboration and efficiency.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What is the relationship between the incident review process and the prioritization of issues in the development workflow?",
+    "reference": "The incident review process evaluates the causes of incidents to improve future responses and prevent similar issues. This feedback directly informs the prioritization of issues in the development workflow, as teams may need to address underlying problems identified during incident reviews.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How do the roles of triage DRI and resolution DRI interact during a broken master incident?",
+    "reference": "The triage DRI assesses and labels incidents, while the resolution DRI is responsible for fixing the issue. Their roles are interdependent during a broken master incident, as effective triage is essential for the resolution DRI to address the underlying problems quickly.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How does the use of the 'pipeline::expedited' label facilitate faster resolution of issues in the CI pipeline?",
+    "reference": "The 'pipeline::expedited' label allows merge requests that fix broken master issues to bypass non-essential jobs in the CI pipeline. This expedites the resolution process by allowing critical fixes to be merged and deployed quickly, minimizing downtime.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "What is the impact of a feature change lock on the merging of merge requests during the release process?",
+    "reference": "A feature change lock restricts merging new features close to a release date to ensure stability. This impacts the merging of merge requests as it requires careful planning and prioritization to ensure that only necessary changes are included before the lock takes effect.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How do the definitions of user experience and maintainability influence the code review values?",
+    "reference": "User experience and maintainability are central to the code review values at GitLab, as they guide reviewers in assessing whether changes enhance the overall quality of the product while ensuring that the code remains clean and manageable for future development.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How do the review-response SLOs for GitLab team members impact the ability to meet milestone deadlines during the release process, particularly when multiple merge requests are pending?",
+    "reference": "The review-response SLOs set expectations for GitLab team members to provide feedback on merge requests within 2 business days. This prompt feedback is crucial for ensuring that merge requests are reviewed and merged in time to meet milestone deadlines, which have a strict timeline leading up to the release date. If reviews are delayed beyond the SLO, it risks pushing pending merge requests past the milestone code cut-off, thus affecting the overall release schedule.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "In what way does the iterative development approach, which emphasizes smaller merge requests, align with the responsibilities of maintainers during code reviews?",
+    "reference": "The iterative development approach encourages breaking down features into smaller, manageable merge requests. This aligns with maintainers' responsibilities during code reviews, as smaller changes are easier to review and allow maintainers to provide timely feedback, thus enhancing the quality and efficiency of the codebase. It ensures that maintainers can prioritize their review tasks effectively without being overwhelmed by larger, more complex changes that might introduce risks.",
+    "category": "variant_D_hybrid"
+  },
+  {
+    "query": "How does the principle of 'short toes' influence the decision-making process for reverting a merge request, especially in relation to the responsibilities of the resolution DRI during a broken master incident?",
+    "reference": "The principle of 'short toes' encourages a culture of accountability and minimizes blame among team members. When a merge request is identified for reverting due to a broken master, the resolution DRI must approach the situation with a focus on resolving the issue rather than blaming the original author. This aligns with the goal of maintaining a collaborative environment, ensuring that the team works together to rectify the broken state without fostering resentment or discouraging future contributions.",
+    "category": "variant_D_hybrid"
+  }
+]

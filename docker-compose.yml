@@ -1,70 +1,64 @@
-version: '3.8'
-
 services:
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      target: builder
     ports:
       - "3000:3000"
     networks:
       - frontend-backend
     depends_on:
       - backend
+    command: sh -c "yarn install && yarn dev"
     environment:
-      - NEXT_PUBLIC_API_URL=http://backend:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - WATCHPACK_POLLING=true
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     restart: unless-stopped
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    command: [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
     ports:
       - "8000:8000"
     networks:
       - frontend-backend
-      - backend-internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
-      - ollama
       - data-provider
     volumes:
       - ./backend:/app
-      - rag_data:/app/data
+      - ./data:/app/data
+      - ./corporate_dataset/gitlab_engineering_workflow_dataset:/app/corporate_dataset
     environment:
-      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_HOST=http://host.docker.internal:11434
       - DATA_PATH=/app/data
+      - LIGHTRAG_DIR=${LIGHTRAG_DIR:-lightrag_cache}
+      - CORPORATE_DATASET_PATH=/app/corporate_dataset
+    env_file:
+      - ./backend/.env
     restart: unless-stopped
-
-  ollama:
-    image: ollama/ollama:latest
-    networks:
-      - backend-internal
-    volumes:
-      - ollama_data:/root/.ollama
-    restart: unless-stopped
-    # Exponemos internamente, no hacia el host. FastAPI accede via http://ollama:11434
 
   data-provider:
     build:
       context: ./data-provider
       dockerfile: Dockerfile
-    networks:
-      - backend-internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
-      - rag_data:/app/data
-    depends_on:
-      - ollama
+      - ./data:/app/data
     restart: "no"
-    # Este contenedor descargará los datos y el modelo, y luego finalizará.
+    # Este contenedor descargará los datos y finalizará.
 
 networks:
   frontend-backend:
     driver: bridge
-  backend-internal:
-    driver: bridge
-    # internal: true # Comentado temporalmente para permitir descarga de datasets y modelos
 
-volumes:
-  rag_data:
-  ollama_data:
+# Los datos ahora se guardan en el directorio local ./data para que los puedas ver
